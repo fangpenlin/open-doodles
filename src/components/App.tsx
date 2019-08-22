@@ -10,6 +10,7 @@ import JumpingDoodle from './doodles/JumpingDoodle';
 import MeditatingDoodle from './doodles/MeditatingDoodle';
 import MoshingDoodle from './doodles/MoshingDoodle';
 import SprintingDoodle from './doodles/SprintingDoodle';
+import SwingingDoodle from './doodles/SwingingDoodle';
 
 const App: React.FC = () => {
 	const [ doodleState, setDoodleState ] = useState<DoodleProps>({
@@ -46,6 +47,9 @@ const App: React.FC = () => {
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<GroovySittingDoodle {...doodleState} />
+				</svg>
+				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
+					<SwingingDoodle {...doodleState} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<JumpingDoodle {...doodleState} />
