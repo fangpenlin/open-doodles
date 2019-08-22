@@ -12,6 +12,7 @@ import MeditatingDoodle from './doodles/MeditatingDoodle';
 import MoshingDoodle from './doodles/MoshingDoodle';
 import RollerSkatingDoodle from './doodles/RollerSkatingDoodle';
 import RollingDoodle from './doodles/RollingDoodle';
+import SelfieDoodle from './doodles/SelfieDoodle';
 import SittingDoodle from './doodles/SittingDoodle';
 import SprintingDoodle from './doodles/SprintingDoodle';
 import StrollingDoodle from './doodles/StrollingDoodle';
@@ -77,10 +78,13 @@ const App: React.FC = () => {
 					<RollerSkatingDoodle {...doodleState} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
+					<JumpingDoodle {...doodleState} />
+				</svg>
+				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<SittingDoodle {...doodleState} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<JumpingDoodle {...doodleState} />
+					<SelfieDoodle {...doodleState} />
 				</svg>
 			</div>
 			<DoodleEditor {...{ ...doodleState, onInkColorUpdate, onAccentColorUpdate }} />
