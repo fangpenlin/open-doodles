@@ -6,16 +6,27 @@ export default class BikiniDoodle extends React.Component<Props> {
 	private groupId1 = uniqueId('react-group-');
 	private groupId2 = uniqueId('react-group-');
 	private groupId3 = uniqueId('react-group-');
-	private rect1 = uniqueId('react-rect-');
-	private path1 = uniqueId('react-path-');
-	private path2 = uniqueId('react-path-');
-	private path3 = uniqueId('react-path-');
-	private path4 = uniqueId('react-path-');
-	private path5 = uniqueId('react-path-');
-	private path6 = uniqueId('react-path-');
+	private rectId1 = uniqueId('react-rect-');
+	private pathId1 = uniqueId('react-path-');
+	private pathId2 = uniqueId('react-path-');
+	private pathId3 = uniqueId('react-path-');
+	private pathId4 = uniqueId('react-path-');
+	private pathId5 = uniqueId('react-path-');
+	private pathId6 = uniqueId('react-path-');
 
 	render() {
-		const { groupId1, groupId2, groupId3, rect1, path1, path2, path3, path4, path5, path6 } = this;
+		const {
+			groupId1,
+			groupId2,
+			groupId3,
+			rectId1: rect1,
+			pathId1: path1,
+			pathId2: path2,
+			pathId3: path3,
+			pathId4: path4,
+			pathId5: path5,
+			pathId6: path6
+		} = this;
 		const { inkColor, accentColor } = this.props;
 		return (
 			<g id={groupId1} stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
