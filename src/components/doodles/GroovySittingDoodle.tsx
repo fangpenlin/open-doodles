@@ -1,10 +1,6 @@
+import Props from './Props';
 import React from 'react';
 import { uniqueId } from 'lodash';
-
-export interface Props {
-	inkColor: string;
-	accentColor: string;
-}
 
 export default class GroovySittingDoodle extends React.Component<Props> {
 	private groupId1 = uniqueId('react-group-');
