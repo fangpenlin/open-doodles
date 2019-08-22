@@ -2,6 +2,7 @@ import './App.css';
 
 import React, { useState } from 'react';
 
+import BikiniDoodle from './doodles/BikiniDoodle';
 import DoodleEditor from './DoodleEditor';
 import { default as DoodleProps } from './doodles/Props';
 import GroovySittingDoodle from './doodles/GroovySittingDoodle';
@@ -33,6 +34,9 @@ const App: React.FC = () => {
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<JumpingDoodle {...doodleState} />
+				</svg>
+				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
+					<BikiniDoodle {...doodleState} />
 				</svg>
 			</div>
 			<DoodleEditor {...{ ...doodleState, onInkColorUpdate, onAccentColorUpdate }} />
