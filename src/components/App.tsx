@@ -7,6 +7,7 @@ import DoodleEditor from './DoodleEditor';
 import { default as DoodleProps } from './doodles/Props';
 import GroovySittingDoodle from './doodles/GroovySittingDoodle';
 import JumpingDoodle from './doodles/JumpingDoodle';
+import MeditatingDoodle from './doodles/MeditatingDoodle';
 import MoshingDoodle from './doodles/MoshingDoodle';
 import SprintingDoodle from './doodles/SprintingDoodle';
 
@@ -39,6 +40,9 @@ const App: React.FC = () => {
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<MoshingDoodle {...doodleState} />
+				</svg>
+				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
+					<MeditatingDoodle {...doodleState} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<GroovySittingDoodle {...doodleState} />
