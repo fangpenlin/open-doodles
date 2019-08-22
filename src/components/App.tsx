@@ -32,7 +32,7 @@ const App: React.FC = () => {
 	};
 	return (
 		<div className="App">
-			<div style={{ display: 'flex', justifyContent: 'center' }}>
+			<div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<BikiniDoodle {...doodleState} />
 				</svg>
