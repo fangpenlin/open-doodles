@@ -10,6 +10,7 @@ import GroovySittingDoodle from './doodles/GroovySittingDoodle';
 import JumpingDoodle from './doodles/JumpingDoodle';
 import MeditatingDoodle from './doodles/MeditatingDoodle';
 import MoshingDoodle from './doodles/MoshingDoodle';
+import RollerSkatingDoodle from './doodles/RollerSkatingDoodle';
 import RollingDoodle from './doodles/RollingDoodle';
 import SprintingDoodle from './doodles/SprintingDoodle';
 import StrollingDoodle from './doodles/StrollingDoodle';
@@ -70,6 +71,9 @@ const App: React.FC = () => {
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<RollingDoodle {...doodleState} />
+				</svg>
+				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
+					<RollerSkatingDoodle {...doodleState} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<JumpingDoodle {...doodleState} />
