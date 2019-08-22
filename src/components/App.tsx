@@ -45,7 +45,38 @@ const App: React.FC = () => {
 	};
 	return (
 		<div className="App">
-			<div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+			<div className="sidebar">
+				<h1 className="logo">Open Doodles</h1>
+				<div className="div-block-4">
+					<div className="div-block-5">
+						<div>Theme</div>
+						<a href="#">New</a>
+					</div>
+					<div className="div-block-2">
+						<div className="div-block" />
+						<div className="div-block accent" />
+						<div className="div-block background" />
+					</div>
+					<div className="div-block-2">
+						<div className="div-block" />
+						<div className="div-block" />
+						<div className="div-block" />
+					</div>
+					<div className="div-block-2">
+						<div className="div-block" />
+						<div className="div-block" />
+						<div className="div-block" />
+					</div>
+				</div>
+				<a href="#" className="button w-button">
+					Download Pack
+				</a>
+				<div className="div-block-3">
+					<a href="#">Studio File</a>
+					<a href="#">Sketch File</a>
+				</div>
+			</div>
+			<div className="section-2" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<BikiniDoodle {...doodleState} />
 				</svg>
