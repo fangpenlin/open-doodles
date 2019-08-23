@@ -26,16 +26,6 @@ export default class ReadingDoodle extends React.Component<Props> {
 	private path17 = uniqueId('react-path-');
 	private path18 = uniqueId('react-path-');
 	private path19 = uniqueId('react-path-');
-	private path20 = uniqueId('react-path-');
-	private path21 = uniqueId('react-path-');
-	private path22 = uniqueId('react-path-');
-	private path23 = uniqueId('react-path-');
-	private path24 = uniqueId('react-path-');
-	private path25 = uniqueId('react-path-');
-	private path26 = uniqueId('react-path-');
-	private path27 = uniqueId('react-path-');
-	private path28 = uniqueId('react-path-');
-	private path29 = uniqueId('react-path-');
 
 	render() {
 		const {
@@ -61,17 +51,7 @@ export default class ReadingDoodle extends React.Component<Props> {
 			path16,
 			path17,
 			path18,
-			path19,
-			path20,
-			path21,
-			path22,
-			path23,
-			path24,
-			path25,
-			path26,
-			path27,
-			path28,
-			path29
+			path19
 		} = this;
 		const { inkColor, accentColor } = this.props;
 		return (
