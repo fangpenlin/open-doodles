@@ -20,7 +20,6 @@ const SideBar: React.FC<Props> = (props) => {
 			<h1 className="logo">Open Doodles</h1>
 			<div className="div-block-4">
 				<div className="div-block-5">
-					ex
 					<div>Theme</div>
 					<a href="#">New</a>
 				</div>
