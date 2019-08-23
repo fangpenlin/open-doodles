@@ -34,6 +34,11 @@ const options: Array<ColorConfig> = [
 		inkColor: '#000000',
 		accentColor: 'blue',
 		backgroundColor: '#FFFFFF00'
+	},
+	{
+		inkColor: '#000000',
+		accentColor: '#CF536D',
+		backgroundColor: 'green'
 	}
 ];
 
@@ -55,10 +60,14 @@ const App: React.FC = () => {
 	};
 	const { selectedIndex, customColor } = state;
 	const config: ColorConfig = selectedIndex !== undefined ? options[selectedIndex] : customColor!;
+	const { backgroundColor } = config;
 	return (
 		<div className="App">
 			<SideBar options={options} onSelect={onSelectOption} selectedIndex={selectedIndex} />
-			<div className="section-2" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+			<div
+				className="section-2"
+				style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', backgroundColor }}
+			>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
 					<BikiniDoodle {...config} />
 				</svg>
