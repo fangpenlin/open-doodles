@@ -21,21 +21,6 @@ export default class IceCreamDoodle extends React.Component<Props> {
 	private path12 = uniqueId('react-path-');
 	private path13 = uniqueId('react-path-');
 	private path14 = uniqueId('react-path-');
-	private path15 = uniqueId('react-path-');
-	private path16 = uniqueId('react-path-');
-	private path17 = uniqueId('react-path-');
-	private path18 = uniqueId('react-path-');
-	private path19 = uniqueId('react-path-');
-	private path20 = uniqueId('react-path-');
-	private path21 = uniqueId('react-path-');
-	private path22 = uniqueId('react-path-');
-	private path23 = uniqueId('react-path-');
-	private path24 = uniqueId('react-path-');
-	private path25 = uniqueId('react-path-');
-	private path26 = uniqueId('react-path-');
-	private path27 = uniqueId('react-path-');
-	private path28 = uniqueId('react-path-');
-	private path29 = uniqueId('react-path-');
 
 	render() {
 		const {
@@ -56,26 +41,11 @@ export default class IceCreamDoodle extends React.Component<Props> {
 			path11,
 			path12,
 			path13,
-			path14,
-			path15,
-			path16,
-			path17,
-			path18,
-			path19,
-			path20,
-			path21,
-			path22,
-			path23,
-			path24,
-			path25,
-			path26,
-			path27,
-			path28,
-			path29
+			path14
 		} = this;
 		const { inkColor, accentColor } = this.props;
 		return (
-			<g id={group1} stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+			<g id={group1} stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
 				<g id={group2}>
 					<rect id={rect1} x="0" y="0" width="1024" height="768" />
 					<path

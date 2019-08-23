@@ -21,8 +21,6 @@ export default class SelfieDoodle extends React.Component<Props> {
 	private path12 = uniqueId('react-path-');
 	private path13 = uniqueId('react-path-');
 	private path14 = uniqueId('react-path-');
-	private path15 = uniqueId('react-path-');
-	private path16 = uniqueId('react-path-');
 
 	render() {
 		const {
@@ -43,13 +41,11 @@ export default class SelfieDoodle extends React.Component<Props> {
 			path11,
 			path12,
 			path13,
-			path14,
-			path15,
-			path16
+			path14
 		} = this;
 		const { inkColor, accentColor } = this.props;
 		return (
-			<g id={group1} stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+			<g id={group1} stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
 				<g id={group2}>
 					<rect id={rect1} x="0" y="0" width="1024" height="768" />
 					<path
@@ -96,19 +92,19 @@ export default class SelfieDoodle extends React.Component<Props> {
 						/>
 						<path
 							d="M199.216674,179.995804 C201.52894,188.611862 222.572441,192.276631 219.737566,180.657184 C218.317308,174.838853 212.388131,180.007582 208.247671,179.3308 C205.568826,178.893202 197.588688,173.92017 199.216674,179.995804"
-							id={path12}
+							id={path11}
 						/>
 						<path
 							d="M193.931737,164.627281 C194.921215,160.016583 184.836263,154.928151 181.176942,156.197481 C175.823475,158.054722 175.846443,169.929584 179.930219,173.086708 C180.467679,173.502412 182.114971,174.493064 182.92162,173.70332 C184.194986,172.454358 182.804022,172.795068 182.506352,171.547957 C182.035041,169.564802 180.492485,167.018734 182.02861,164.762454 C184.93273,160.499873 192.515048,171.233171 193.931737,164.627281"
-							id={path13}
+							id={path12}
 						/>
 						<path
 							d="M163.180765,187.005421 C159.544464,186.801081 156.563088,192.444745 161.912681,191.971845 C162.937279,191.881352 165.138431,191.623494 165.732929,190.547306 C166.71665,188.763714 164.779422,187.094941 163.180765,187.005421"
-							id={path14}
+							id={path13}
 						/>
 						<path
 							d="M339.580361,52.4624415 C338.335888,50.662171 335.726713,47.7650168 333.481818,49.5707399 C331.491739,51.1719902 331.838971,55.1242247 332.602523,57.0880736 C334.656306,62.3752891 339.508582,67.0854367 344.999692,64.0392444 C343.092159,60.2178725 342.017266,55.9866461 339.580361,52.4624415"
-							id={path15}
+							id={path14}
 						/>
 					</g>
 				</g>

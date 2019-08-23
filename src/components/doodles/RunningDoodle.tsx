@@ -13,7 +13,7 @@ export default class RunningDoodle extends React.Component<Props> {
 		const { group1, group2, rect1, path1, path2 } = this;
 		const { inkColor, accentColor } = this.props;
 		return (
-			<g id={group1} stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+			<g id={group1} stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
 				<g id={group2}>
 					<rect id={rect1} x="0" y="0" width="1024" height="768" />
 					<path

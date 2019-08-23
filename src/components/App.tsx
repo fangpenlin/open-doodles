@@ -1,11 +1,10 @@
 import './App.css';
 
 import React, { useState } from 'react';
+import SideBar, { ColorConfig } from './SideBar';
 
 import BikiniDoodle from './doodles/BikiniDoodle';
 import DancingDoodle from './doodles/DancingDoodle';
-import DoodleEditor from './DoodleEditor';
-import { default as DoodleProps } from './doodles/Props';
 import GroovySittingDoodle from './doodles/GroovySittingDoodle';
 import IceCreamDoodle from './doodles/IceCreamDoodle';
 import JumpingDoodle from './doodles/JumpingDoodle';
@@ -25,120 +24,102 @@ import SwingingDoodle from './doodles/SwingingDoodle';
 import UnboxingDoodle from './doodles/UnboxingDoodle';
 import ZombieingDoodle from './doodles/ZombieingDoodle';
 
-const App: React.FC = () => {
-	const [ doodleState, setDoodleState ] = useState<DoodleProps>({
+const options: Array<ColorConfig> = [
+	{
 		inkColor: '#000000',
-		accentColor: '#CF536D'
+		accentColor: '#CF536D',
+		backgroundColor: '#FFFFFF00'
+	},
+	{
+		inkColor: '#000000',
+		accentColor: 'blue',
+		backgroundColor: '#FFFFFF00'
+	}
+];
+
+interface State {
+	selectedIndex?: number;
+	customColor?: ColorConfig;
+}
+
+const App: React.FC = () => {
+	const [ state, setState ] = useState<State>({
+		selectedIndex: 1
 	});
 	// TODO: maybe need to use useCallback to memorize this?
-	const onInkColorUpdate = (color: string) => {
-		setDoodleState((oldStatus: DoodleProps) => ({
+	const onSelectOption = (selectedIndex: number) => {
+		setState((oldStatus: State) => ({
 			...oldStatus,
-			inkColor: color
+			selectedIndex
 		}));
 	};
-	const onAccentColorUpdate = (color: string) => {
-		setDoodleState((oldStatus: DoodleProps) => ({
-			...oldStatus,
-			accentColor: color
-		}));
-	};
+	const { selectedIndex, customColor } = state;
+	const config: ColorConfig = selectedIndex !== undefined ? options[selectedIndex] : customColor!;
 	return (
 		<div className="App">
-			<div className="sidebar">
-				<h1 className="logo">Open Doodles</h1>
-				<div className="div-block-4">
-					<div className="div-block-5">
-						<div>Theme</div>
-						<a href="#">New</a>
-					</div>
-					<div className="div-block-2">
-						<div className="div-block" />
-						<div className="div-block accent" />
-						<div className="div-block background" />
-					</div>
-					<div className="div-block-2">
-						<div className="div-block" />
-						<div className="div-block" />
-						<div className="div-block" />
-					</div>
-					<div className="div-block-2">
-						<div className="div-block" />
-						<div className="div-block" />
-						<div className="div-block" />
-					</div>
-				</div>
-				<a href="#" className="button w-button">
-					Download Pack
-				</a>
-				<div className="div-block-3">
-					<a href="#">Studio File</a>
-					<a href="#">Sketch File</a>
-				</div>
-			</div>
+			<SideBar options={options} onSelect={onSelectOption} selectedIndex={selectedIndex} />
 			<div className="section-2" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<BikiniDoodle {...doodleState} />
+					<BikiniDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<SprintingDoodle {...doodleState} />
+					<SprintingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<MoshingDoodle {...doodleState} />
+					<MoshingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<MeditatingDoodle {...doodleState} />
+					<MeditatingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<GroovySittingDoodle {...doodleState} />
+					<GroovySittingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<SwingingDoodle {...doodleState} />
+					<SwingingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<ZombieingDoodle {...doodleState} />
+					<ZombieingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<UnboxingDoodle {...doodleState} />
+					<UnboxingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<DancingDoodle {...doodleState} />
+					<DancingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<StrollingDoodle {...doodleState} />
+					<StrollingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<RollingDoodle {...doodleState} />
+					<RollingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<RollerSkatingDoodle {...doodleState} />
+					<RollerSkatingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<JumpingDoodle {...doodleState} />
+					<JumpingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<SittingDoodle {...doodleState} />
+					<SittingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<SelfieDoodle {...doodleState} />
+					<SelfieDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<IceCreamDoodle {...doodleState} />
+					<IceCreamDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<ReadingDoodle {...doodleState} />
+					<ReadingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<RunningDoodle {...doodleState} />
+					<RunningDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<LovingDoodle {...doodleState} />
+					<LovingDoodle {...config} />
 				</svg>
 				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<PettingDoodle {...doodleState} />
+					<PettingDoodle {...config} />
 				</svg>
 			</div>
-			<DoodleEditor {...{ ...doodleState, onInkColorUpdate, onAccentColorUpdate }} />
 		</div>
 	);
 };
