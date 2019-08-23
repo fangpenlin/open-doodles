@@ -1,10 +1,11 @@
 import './App.css';
 
-import React, { useState } from 'react';
+import React, { ComponentClass, useState } from 'react';
 import SideBar, { ColorConfig } from './SideBar';
 
 import BikiniDoodle from './doodles/BikiniDoodle';
 import DancingDoodle from './doodles/DancingDoodle';
+import { default as DoodleProps } from './doodles/Props';
 import GroovySittingDoodle from './doodles/GroovySittingDoodle';
 import IceCreamDoodle from './doodles/IceCreamDoodle';
 import JumpingDoodle from './doodles/JumpingDoodle';
@@ -61,6 +62,28 @@ const App: React.FC = () => {
 	const { selectedIndex, customColor } = state;
 	const config: ColorConfig = selectedIndex !== undefined ? options[selectedIndex] : customColor!;
 	const { backgroundColor } = config;
+	const doodles: Array<React.ComponentClass<DoodleProps>> = [
+		BikiniDoodle,
+		SprintingDoodle,
+		MoshingDoodle,
+		MeditatingDoodle,
+		GroovySittingDoodle,
+		SwingingDoodle,
+		ZombieingDoodle,
+		UnboxingDoodle,
+		DancingDoodle,
+		StrollingDoodle,
+		RollingDoodle,
+		RollerSkatingDoodle,
+		JumpingDoodle,
+		SittingDoodle,
+		SelfieDoodle,
+		IceCreamDoodle,
+		ReadingDoodle,
+		RunningDoodle,
+		LovingDoodle,
+		PettingDoodle
+	];
 	return (
 		<div className="App">
 			<SideBar options={options} onSelect={onSelectOption} selectedIndex={selectedIndex} />
@@ -68,66 +91,13 @@ const App: React.FC = () => {
 				className="section-2"
 				style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', backgroundColor }}
 			>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<BikiniDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<SprintingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<MoshingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<MeditatingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<GroovySittingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<SwingingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<ZombieingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<UnboxingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<DancingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<StrollingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<RollingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<RollerSkatingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<JumpingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<SittingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<SelfieDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<IceCreamDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<ReadingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<RunningDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<LovingDoodle {...config} />
-				</svg>
-				<svg width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-					<PettingDoodle {...config} />
-				</svg>
+				{doodles.map((DoodleCls) => {
+					return (
+						<svg key={DoodleCls.name} width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
+							<DoodleCls {...config} />
+						</svg>
+					);
+				})}
 			</div>
 		</div>
 	);
