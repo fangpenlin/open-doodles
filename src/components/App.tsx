@@ -62,7 +62,7 @@ const App: React.FC = () => {
 	const { selectedIndex, customColor } = state;
 	const config: ColorConfig = selectedIndex !== undefined ? options[selectedIndex] : customColor!;
 	const { backgroundColor } = config;
-	const doodles: Array<React.ComponentClass<DoodleProps>> = [
+	const doodles: Array<ComponentClass<DoodleProps>> = [
 		BikiniDoodle,
 		SprintingDoodle,
 		MoshingDoodle,
