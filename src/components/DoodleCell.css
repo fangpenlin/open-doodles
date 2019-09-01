@@ -1,0 +1,18 @@
+.DoodleCell {
+	position: relative;
+}
+
+.DoodleCell-download-bar {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.DoodleCell-download-botton {
+	border: 2px solid black;
+	padding: 4px 16px;
+	margin: 0 8px;
+	font-weight: bold;
+}

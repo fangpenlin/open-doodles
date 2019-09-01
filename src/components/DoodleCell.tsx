@@ -1,3 +1,5 @@
+import './DoodleCell.css';
+
 import React, { ComponentClass, useRef } from 'react';
 
 import { default as DoodleProps } from './doodles/Props';
@@ -5,21 +7,17 @@ import { default as DoodleProps } from './doodles/Props';
 export interface Props {
 	readonly doodleClass: ComponentClass<DoodleProps>;
 	readonly onDownloadPNG: (svgRef: SVGSVGElement) => void;
+	readonly onDownloadSVG: (svgRef: SVGSVGElement) => void;
 	readonly config: DoodleProps;
 }
 
 const DoodleCell: React.FC<Props> = (props) => {
-	const { doodleClass, onDownloadPNG, config } = props;
+	const { doodleClass, onDownloadPNG, onDownloadSVG, config } = props;
 	// Notice: somehow jsx need class name to be captalized
 	const DoodleClass: ComponentClass<DoodleProps> = doodleClass;
 	const doodleRef = useRef(null);
 	return (
-		<div
-			key={doodleClass.name}
-			onClick={() => {
-				onDownloadPNG(doodleRef.current!);
-			}}
-		>
+		<div className="DoodleCell">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="400px"
@@ -30,6 +28,24 @@ const DoodleCell: React.FC<Props> = (props) => {
 			>
 				<DoodleClass {...config} />
 			</svg>
+			<div className="DoodleCell-download-bar">
+				<button
+					className="DoodleCell-download-botton"
+					onClick={() => {
+						onDownloadPNG(doodleRef.current!);
+					}}
+				>
+					PNG
+				</button>
+				<button
+					className="DoodleCell-download-botton"
+					onClick={() => {
+						onDownloadSVG(doodleRef.current!);
+					}}
+				>
+					SVG
+				</button>
+			</div>
 		</div>
 	);
 };

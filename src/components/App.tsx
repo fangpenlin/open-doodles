@@ -143,6 +143,9 @@ const App: React.FC = () => {
 									svgRef
 								});
 							}}
+							onDownloadSVG={(svgRef) => {
+								// TODO:
+							}}
 							config={config}
 						/>
 					);
