@@ -3,8 +3,8 @@ import React, { ChangeEvent, useCallback } from 'react';
 import { default as DoodleProps } from './doodles/Props';
 
 export interface Props extends DoodleProps {
-	onInkColorUpdate: (color: string) => void;
-	onAccentColorUpdate: (color: string) => void;
+	readonly onInkColorUpdate: (color: string) => void;
+	readonly onAccentColorUpdate: (color: string) => void;
 }
 
 const DoodleEditor: React.FC<Props> = (props) => {

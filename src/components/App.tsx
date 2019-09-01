@@ -47,8 +47,8 @@ const options: Array<ColorConfig> = [
 ];
 
 interface State {
-	selectedIndex?: number;
-	customColor?: ColorConfig;
+	readonly selectedIndex?: number;
+	readonly customColor?: ColorConfig;
 }
 
 function triggerDownload(imageBlob: Blob, fileName: string) {
