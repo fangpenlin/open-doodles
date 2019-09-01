@@ -8,6 +8,7 @@ import SideBar, { ColorConfig } from './SideBar';
 
 import BikiniDoodle from './doodles/BikiniDoodle';
 import DancingDoodle from './doodles/DancingDoodle';
+import DoodleCell from './DoodleCell';
 import { default as DoodleProps } from './doodles/Props';
 import GroovySittingDoodle from './doodles/GroovySittingDoodle';
 import IceCreamDoodle from './doodles/IceCreamDoodle';
@@ -55,8 +56,8 @@ function triggerDownload(imageBlob: Blob, fileName: string) {
 	FileSaver.saveAs(imageBlob, fileName);
 }
 
-function downloadPNG(args: { canvasRef: HTMLCanvasElement; doodleRef: SVGSVGElement }) {
-	const { canvasRef, doodleRef } = args;
+function downloadPNG(args: { canvasRef: HTMLCanvasElement; svgRef: SVGSVGElement }) {
+	const { canvasRef, svgRef: doodleRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(doodleRef) as HTMLElement;
 	const canvas = canvasRef;
 	const ctx = canvas.getContext('2d')!;
@@ -131,29 +132,19 @@ const App: React.FC = () => {
 				className="section-2"
 				style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', backgroundColor }}
 			>
-				{doodles.map((DoodleCls, index) => {
-					// TODO: extract this to somewhere else
+				{doodles.map((doodleClass) => {
 					return (
-						<div
-							key={DoodleCls.name}
-							onClick={() => {
+						<DoodleCell
+							key={doodleClass.name}
+							doodleClass={doodleClass}
+							onDownloadPNG={(svgRef) => {
 								downloadPNG({
 									canvasRef: canvasRef.current!,
-									doodleRef: doodleRefs.current[index].current!
+									svgRef
 								});
 							}}
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="400px"
-								height="300px"
-								viewBox="0 0 1024 768"
-								version="1.1"
-								ref={doodleRefs.current[index]}
-							>
-								<DoodleCls {...config} />
-							</svg>
-						</div>
+							config={config}
+						/>
 					);
 				})}
 			</div>

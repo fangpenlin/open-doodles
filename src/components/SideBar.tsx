@@ -2,15 +2,15 @@ import { default as DoodleProps } from './doodles/Props';
 import React from 'react';
 
 export interface ColorConfig {
-	inkColor: string;
-	accentColor: string;
-	backgroundColor: string;
+	readonly inkColor: string;
+	readonly accentColor: string;
+	readonly backgroundColor: string;
 }
 
 export interface Props {
-	options: Array<ColorConfig>;
-	selectedIndex?: number;
-	onSelect: (index: number) => void;
+	readonly options: Array<ColorConfig>;
+	readonly selectedIndex?: number;
+	readonly onSelect: (index: number) => void;
 }
 
 const SideBar: React.FC<Props> = (props) => {
