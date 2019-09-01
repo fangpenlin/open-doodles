@@ -1,6 +1,9 @@
 import './App.css';
 
-import React, { ComponentClass, useState } from 'react';
+import * as FileSaver from 'file-saver';
+import * as ReactDOM from 'react-dom';
+
+import React, { ComponentClass, useRef, useState } from 'react';
 import SideBar, { ColorConfig } from './SideBar';
 
 import BikiniDoodle from './doodles/BikiniDoodle';
@@ -48,10 +51,43 @@ interface State {
 	customColor?: ColorConfig;
 }
 
+function triggerDownload(imageBlob: Blob, fileName: string) {
+	FileSaver.saveAs(imageBlob, fileName);
+}
+
+function downloadPNG(args: { canvasRef: HTMLCanvasElement; doodleRef: HTMLElement }) {
+	const { canvasRef, doodleRef } = args;
+	const svgNode: Element = ReactDOM.findDOMNode(doodleRef) as Element;
+	const canvas = canvasRef;
+	const ctx = canvas.getContext('2d')!;
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	const anyWindow = window as any;
+	const DOMURL = anyWindow.URL || anyWindow.webkitURL || window;
+
+	const data = svgNode.outerHTML;
+	const img = new Image();
+	const svg = new Blob([ data ], { type: 'image/svg+xml' });
+	const url = DOMURL.createObjectURL(svg);
+
+	img.onload = () => {
+		ctx.save();
+		ctx.scale(2, 2);
+		ctx.drawImage(img, 0, 0);
+		ctx.restore();
+		DOMURL.revokeObjectURL(url);
+		canvasRef.toBlob((imageBlob) => {
+			triggerDownload(imageBlob!, 'doodle.png');
+		});
+	};
+	img.src = url;
+}
+
 const App: React.FC = () => {
 	const [ state, setState ] = useState<State>({
 		selectedIndex: 1
 	});
+	const canvasRef = useRef<HTMLCanvasElement>(null);
 	// TODO: maybe need to use useCallback to memorize this?
 	const onSelectOption = (selectedIndex: number) => {
 		setState((oldStatus: State) => ({
@@ -99,6 +135,7 @@ const App: React.FC = () => {
 					);
 				})}
 			</div>
+			<canvas ref={canvasRef} style={{ display: 'none' }} width="800" height="600" />
 		</div>
 	);
 };
