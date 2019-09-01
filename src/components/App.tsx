@@ -3,7 +3,7 @@ import './App.css';
 import * as FileSaver from 'file-saver';
 import * as ReactDOM from 'react-dom';
 
-import React, { ComponentClass, useRef, useState } from 'react';
+import React, { ComponentClass, createRef, useRef, useState } from 'react';
 import SideBar, { ColorConfig } from './SideBar';
 
 import BikiniDoodle from './doodles/BikiniDoodle';
@@ -55,9 +55,9 @@ function triggerDownload(imageBlob: Blob, fileName: string) {
 	FileSaver.saveAs(imageBlob, fileName);
 }
 
-function downloadPNG(args: { canvasRef: HTMLCanvasElement; doodleRef: HTMLElement }) {
+function downloadPNG(args: { canvasRef: HTMLCanvasElement; doodleRef: SVGSVGElement }) {
 	const { canvasRef, doodleRef } = args;
-	const svgNode: Element = ReactDOM.findDOMNode(doodleRef) as Element;
+	const svgNode: HTMLElement = ReactDOM.findDOMNode(doodleRef) as HTMLElement;
 	const canvas = canvasRef;
 	const ctx = canvas.getContext('2d')!;
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,9 +70,12 @@ function downloadPNG(args: { canvasRef: HTMLCanvasElement; doodleRef: HTMLElemen
 	const svg = new Blob([ data ], { type: 'image/svg+xml' });
 	const url = DOMURL.createObjectURL(svg);
 
+	const svgWidth = parseInt(svgNode.getAttribute('width')!);
+	const svgHeight = parseInt(svgNode.getAttribute('height')!);
+
 	img.onload = () => {
 		ctx.save();
-		ctx.scale(2, 2);
+		ctx.scale(canvas.width / svgWidth, canvas.height / svgHeight);
 		ctx.drawImage(img, 0, 0);
 		ctx.restore();
 		DOMURL.revokeObjectURL(url);
@@ -87,7 +90,6 @@ const App: React.FC = () => {
 	const [ state, setState ] = useState<State>({
 		selectedIndex: 1
 	});
-	const canvasRef = useRef<HTMLCanvasElement>(null);
 	// TODO: maybe need to use useCallback to memorize this?
 	const onSelectOption = (selectedIndex: number) => {
 		setState((oldStatus: State) => ({
@@ -120,6 +122,8 @@ const App: React.FC = () => {
 		LovingDoodle,
 		PettingDoodle
 	];
+	const canvasRef = useRef<HTMLCanvasElement | null>(null);
+	const doodleRefs = useRef<Array<{ current: SVGSVGElement | null }>>(doodles.map(() => createRef<SVGSVGElement>()));
 	return (
 		<div className="App">
 			<SideBar options={options} onSelect={onSelectOption} selectedIndex={selectedIndex} />
@@ -127,15 +131,33 @@ const App: React.FC = () => {
 				className="section-2"
 				style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', backgroundColor }}
 			>
-				{doodles.map((DoodleCls) => {
+				{doodles.map((DoodleCls, index) => {
+					// TODO: extract this to somewhere else
 					return (
-						<svg key={DoodleCls.name} width="400px" height="300px" viewBox="0 0 1024 768" version="1.1">
-							<DoodleCls {...config} />
-						</svg>
+						<div
+							key={DoodleCls.name}
+							onClick={() => {
+								downloadPNG({
+									canvasRef: canvasRef.current!,
+									doodleRef: doodleRefs.current[index].current!
+								});
+							}}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="400px"
+								height="300px"
+								viewBox="0 0 1024 768"
+								version="1.1"
+								ref={doodleRefs.current[index]}
+							>
+								<DoodleCls {...config} />
+							</svg>
+						</div>
 					);
 				})}
 			</div>
-			<canvas ref={canvasRef} style={{ display: 'none' }} width="800" height="600" />
+			<canvas ref={canvasRef} style={{ display: 'none' }} width="1024" height="768" />
 		</div>
 	);
 };
