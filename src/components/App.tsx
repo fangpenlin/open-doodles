@@ -53,16 +53,21 @@ interface State {
 	readonly customColor?: ColorConfig;
 }
 
-function triggerDownload(imageBlob: Blob, fileName: string) {
-	FileSaver.saveAs(imageBlob, fileName);
+interface RenderResult {
+	readonly fileName: string;
+	readonly blob: Blob;
 }
 
-function downloadPNG(args: {
+function triggerDownload(result: RenderResult) {
+	FileSaver.saveAs(result.blob, result.fileName);
+}
+
+function renderPNG(args: {
 	name: string;
 	backgroundColor: string;
 	canvasRef: HTMLCanvasElement;
 	svgRef: SVGElement;
-}) {
+}): Promise<RenderResult> {
 	const { name, canvasRef, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 	const canvas = canvasRef;
@@ -85,20 +90,23 @@ function downloadPNG(args: {
 	const svgWidth = parseInt(svgNode.getAttribute('width')!);
 	const svgHeight = parseInt(svgNode.getAttribute('height')!);
 
-	img.onload = () => {
-		ctx.save();
-		ctx.scale(canvas.width / svgWidth, canvas.height / svgHeight);
-		ctx.drawImage(img, 0, 0);
-		ctx.restore();
-		DOMURL.revokeObjectURL(url);
-		canvasRef.toBlob((imageBlob) => {
-			triggerDownload(imageBlob!, name + '.png');
-		});
-	};
-	img.src = url;
+	return new Promise((resolve, reject) => {
+		img.onload = () => {
+			ctx.save();
+			ctx.scale(canvas.width / svgWidth, canvas.height / svgHeight);
+			ctx.drawImage(img, 0, 0);
+			ctx.restore();
+			DOMURL.revokeObjectURL(url);
+			canvasRef.toBlob((blob) => {
+				resolve({ blob: blob!, fileName: name + '.png' });
+			});
+		};
+		img.onerror = reject;
+		img.src = url;
+	});
 }
 
-function onDownloadSVG(args: { name: string; backgroundColor: string; svgRef: SVGElement }) {
+function renderSVG(args: { name: string; backgroundColor: string; svgRef: SVGElement }): Promise<RenderResult> {
 	const { name, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 	// TODO: maybe we should find a better way to do this?
@@ -107,8 +115,11 @@ function onDownloadSVG(args: { name: string; backgroundColor: string; svgRef: SV
 	childNode.setAttribute('fill', backgroundColor);
 	const data = svgNode.outerHTML;
 	childNode.setAttribute('fill', oldFill!);
-	const svg = new Blob([ data ], { type: 'image/svg+xml' });
-	triggerDownload(svg, name + '.svg');
+	const blob = new Blob([ data ], { type: 'image/svg+xml' });
+	return Promise.resolve({
+		fileName: name + '.svg',
+		blob
+	});
 }
 
 const App: React.FC = () => {
@@ -161,19 +172,19 @@ const App: React.FC = () => {
 							key={doodleClass.name}
 							doodleClass={doodleClass}
 							onDownloadPNG={(svgRef) => {
-								downloadPNG({
+								renderPNG({
 									name: doodleClass.name,
 									canvasRef: canvasRef.current!,
 									backgroundColor,
 									svgRef
-								});
+								}).then(triggerDownload);
 							}}
 							onDownloadSVG={(svgRef) => {
-								onDownloadSVG({
+								renderSVG({
 									name: doodleClass.name,
 									backgroundColor,
 									svgRef
-								});
+								}).then(triggerDownload);
 							}}
 							config={config}
 						/>
