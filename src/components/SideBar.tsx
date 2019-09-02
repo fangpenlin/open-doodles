@@ -28,7 +28,7 @@ const SideBar: React.FC<Props> = (props) => {
 						<div
 							key={index}
 							className="div-block-2"
-							style={{ ...index === selectedIndex ? { backgroundColor: '#f5f5f5' } : {} }}
+							style={{ ...index === selectedIndex ? { borderColor: 'black' } : {} }}
 							onClick={() => onSelect(index)}
 						>
 							<div className="div-block" style={{ backgroundColor: config.inkColor }} />
