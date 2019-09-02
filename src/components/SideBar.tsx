@@ -34,7 +34,12 @@ const SideBar: React.FC<Props> = (props) => {
 						>
 							<div className="div-block" style={{ backgroundColor: config.inkColor }} />
 							<div className="div-block" style={{ backgroundColor: config.accentColor }} />
-							<div className="div-block" style={{ backgroundColor: config.backgroundColor }} />
+							<div
+								className={
+									config.backgroundColor == '#FFFFFF00' ? 'div-block checkerboard-bg' : 'div-block'
+								}
+								style={{ backgroundColor: config.backgroundColor }}
+							/>
 						</div>
 					);
 				})}
