@@ -88,6 +88,14 @@ function downloadPNG(args: { name: string; canvasRef: HTMLCanvasElement; svgRef:
 	img.src = url;
 }
 
+function onDownloadSVG(args: { name: string; svgRef: SVGSVGElement }) {
+	const { name, svgRef } = args;
+	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
+	const data = svgNode.outerHTML;
+	const svg = new Blob([ data ], { type: 'image/svg+xml' });
+	triggerDownload(svg, name + '.svg');
+}
+
 const App: React.FC = () => {
 	const [ state, setState ] = useState<State>({
 		selectedIndex: 1
@@ -146,7 +154,10 @@ const App: React.FC = () => {
 								});
 							}}
 							onDownloadSVG={(svgRef) => {
-								// TODO:
+								onDownloadSVG({
+									name: doodleClass.name,
+									svgRef
+								});
 							}}
 							config={config}
 						/>
