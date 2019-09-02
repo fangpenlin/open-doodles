@@ -12,6 +12,7 @@ import DoodleCell from './DoodleCell';
 import { default as DoodleProps } from './doodles/Props';
 import GroovySittingDoodle from './doodles/GroovySittingDoodle';
 import IceCreamDoodle from './doodles/IceCreamDoodle';
+import JSZip from 'jszip';
 import JumpingDoodle from './doodles/JumpingDoodle';
 import LovingDoodle from './doodles/LovingDoodle';
 import MeditatingDoodle from './doodles/MeditatingDoodle';
@@ -53,13 +54,13 @@ interface State {
 	readonly customColor?: ColorConfig;
 }
 
-interface RenderResult {
+interface FileObject {
 	readonly fileName: string;
 	readonly blob: Blob;
 }
 
-function triggerDownload(result: RenderResult) {
-	FileSaver.saveAs(result.blob, result.fileName);
+function triggerDownload(file: FileObject) {
+	FileSaver.saveAs(file.blob, file.fileName);
 }
 
 function renderPNG(args: {
@@ -67,30 +68,31 @@ function renderPNG(args: {
 	backgroundColor: string;
 	canvasRef: HTMLCanvasElement;
 	svgRef: SVGSVGElement;
-}): Promise<RenderResult> {
-	const { name, canvasRef, backgroundColor, svgRef } = args;
-	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
-	const canvas = canvasRef;
-	const ctx = canvas.getContext('2d')!;
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-	ctx.save();
-	ctx.fillStyle = backgroundColor;
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
-	ctx.restore();
-
-	const anyWindow = window as any;
-	const DOMURL = anyWindow.URL || anyWindow.webkitURL || window;
-
-	const data = svgNode.outerHTML;
-	const img = new Image();
-	const svg = new Blob([ data ], { type: 'image/svg+xml' });
-	const url = DOMURL.createObjectURL(svg);
-
-	const svgWidth = parseInt(svgNode.getAttribute('width')!);
-	const svgHeight = parseInt(svgNode.getAttribute('height')!);
-
+}): Promise<FileObject> {
 	return new Promise((resolve, reject) => {
+		console.info('@@@@');
+		const { name, canvasRef, backgroundColor, svgRef } = args;
+		const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
+		const canvas = canvasRef;
+		const ctx = canvas.getContext('2d')!;
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		ctx.save();
+		ctx.fillStyle = backgroundColor;
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.restore();
+
+		const anyWindow = window as any;
+		const DOMURL = anyWindow.URL || anyWindow.webkitURL || window;
+
+		const data = svgNode.outerHTML;
+		const img = new Image();
+		const svg = new Blob([ data ], { type: 'image/svg+xml' });
+		const url = DOMURL.createObjectURL(svg);
+
+		const svgWidth = parseInt(svgNode.getAttribute('width')!);
+		const svgHeight = parseInt(svgNode.getAttribute('height')!);
+
 		img.onload = () => {
 			ctx.save();
 			ctx.scale(canvas.width / svgWidth, canvas.height / svgHeight);
@@ -106,7 +108,7 @@ function renderPNG(args: {
 	});
 }
 
-function renderSVG(args: { name: string; backgroundColor: string; svgRef: SVGSVGElement }): Promise<RenderResult> {
+async function renderSVG(args: { name: string; backgroundColor: string; svgRef: SVGSVGElement }): Promise<FileObject> {
 	const { name, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 	// TODO: maybe we should find a better way to do this? like make each
@@ -117,10 +119,57 @@ function renderSVG(args: { name: string; backgroundColor: string; svgRef: SVGSVG
 	const data = svgNode.outerHTML;
 	childNode.setAttribute('fill', oldFill!);
 	const blob = new Blob([ data ], { type: 'image/svg+xml' });
-	return Promise.resolve({
+	return {
 		fileName: name + '.svg',
 		blob
+	};
+}
+
+async function generatePack(args: {
+	canvasRef: HTMLCanvasElement;
+	doodles: Array<ComponentClass<DoodleProps>>;
+	svgRefs: Array<RefObject<SVGSVGElement>>;
+	backgroundColor: string;
+}): Promise<FileObject> {
+	const { canvasRef, doodles, svgRefs, backgroundColor } = args;
+	const pngPromises = doodles.map((doodleClass, index) => {
+		const svgRef = svgRefs[index].current!;
+		return renderPNG({
+			name: doodleClass.name,
+			svgRef,
+			canvasRef,
+			backgroundColor
+		});
 	});
+	const svgPromises = doodles.map((doodleClass, index) => {
+		const svgRef = svgRefs[index].current!;
+		return renderSVG({
+			name: doodleClass.name,
+			svgRef,
+			backgroundColor
+		});
+	});
+	const zip = new JSZip();
+	const pngFolder = zip.folder('png');
+	const svgFolder = zip.folder('svg');
+
+	await Promise.all([
+		Promise.all(pngPromises).then((files) => {
+			files.forEach((file) => {
+				pngFolder.file(file.fileName, file.blob);
+			});
+		}),
+		Promise.all(svgPromises).then((files) => {
+			files.forEach((file) => {
+				svgFolder.file(file.fileName, file.blob);
+			});
+		})
+	]);
+	const blob = await zip.generateAsync({ type: 'blob' });
+	return {
+		fileName: 'open-doodles.zip',
+		blob
+	};
 }
 
 const App: React.FC = () => {
@@ -134,7 +183,6 @@ const App: React.FC = () => {
 			selectedIndex
 		}));
 	};
-	const onDownloadPack = () => {};
 	const { selectedIndex, customColor } = state;
 	const config: ColorConfig = selectedIndex !== undefined ? options[selectedIndex] : customColor!;
 	const { backgroundColor } = config;
@@ -162,6 +210,14 @@ const App: React.FC = () => {
 	];
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const svgRefs = useRef<Array<RefObject<SVGSVGElement>>>(doodles.map(() => createRef<SVGSVGElement>()));
+	const onDownloadPack = () => {
+		generatePack({
+			doodles,
+			canvasRef: canvasRef.current!,
+			svgRefs: svgRefs.current,
+			backgroundColor
+		}).then(triggerDownload);
+	};
 	return (
 		<div className="App">
 			<SideBar
