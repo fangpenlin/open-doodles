@@ -101,6 +101,7 @@ function downloadPNG(args: {
 function onDownloadSVG(args: { name: string; backgroundColor: string; svgRef: SVGElement }) {
 	const { name, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
+	// TODO: maybe we should find a better way to do this?
 	const childNode = ReactDOM.findDOMNode(svgNode.children[0]) as HTMLElement;
 	const oldFill = childNode.getAttribute('fill');
 	childNode.setAttribute('fill', backgroundColor);
