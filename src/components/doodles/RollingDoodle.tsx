@@ -3,9 +3,6 @@ import React from 'react';
 import { uniqueId } from 'lodash';
 
 export default class RollingDoodle extends React.Component<Props> {
-	// Trick from https://stackoverflow.com/a/48438739/25077 for keeping the className after webpack pipeline
-	className = this.constructor.name;
-
 	private group1 = uniqueId('react-group-');
 	private group2 = uniqueId('react-group-');
 	private group3 = uniqueId('react-group-');
