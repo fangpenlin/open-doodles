@@ -3,7 +3,7 @@ import './App.css';
 import * as FileSaver from 'file-saver';
 import * as ReactDOM from 'react-dom';
 
-import React, { ComponentClass, MutableRefObject, RefObject, createRef, useRef, useState } from 'react';
+import React, { ComponentClass, ComponentState, RefObject, createRef, useRef, useState } from 'react';
 import SideBar, { ColorConfig } from './SideBar';
 
 import BikiniDoodle from './doodles/BikiniDoodle';
@@ -48,6 +48,10 @@ const options: Array<ColorConfig> = [
 	}
 	// TODO: add more sensable themes
 ];
+
+interface ComponentClassWithName<P = {}, S = ComponentState> extends ComponentClass {
+	readonly className: string;
+}
 
 interface State {
 	readonly selectedIndex?: number;
@@ -126,7 +130,7 @@ async function renderSVG(args: { name: string; backgroundColor: string; svgRef: 
 
 async function generatePack(args: {
 	canvasRef: HTMLCanvasElement;
-	doodles: Array<ComponentClass<DoodleProps>>;
+	doodles: Array<ComponentClassWithName<DoodleProps>>;
 	svgRefs: Array<RefObject<SVGSVGElement>>;
 	backgroundColor: string;
 }): Promise<FileObject> {
@@ -156,7 +160,7 @@ async function generatePack(args: {
 		const doodleClass = doodles[i];
 		const svgRef = svgRefs[i].current!;
 		const file = await renderPNG({
-			name: doodleClass.name,
+			name: doodleClass.className,
 			svgRef,
 			canvasRef,
 			backgroundColor
@@ -185,7 +189,7 @@ const App: React.FC = () => {
 	const { selectedIndex, customColor } = state;
 	const config: ColorConfig = selectedIndex !== undefined ? options[selectedIndex] : customColor!;
 	const { backgroundColor } = config;
-	const doodles: Array<ComponentClass<DoodleProps>> = [
+	const doodles: Array<ComponentClassWithName<DoodleProps>> = ([
 		BikiniDoodle,
 		SprintingDoodle,
 		MoshingDoodle,
@@ -206,7 +210,7 @@ const App: React.FC = () => {
 		RunningDoodle,
 		LovingDoodle,
 		PettingDoodle
-	];
+	] as unknown) as Array<ComponentClassWithName<DoodleProps>>;
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const svgRefs = useRef<Array<RefObject<SVGSVGElement>>>(doodles.map(() => createRef<SVGSVGElement>()));
 	const onDownloadPack = () => {
@@ -233,8 +237,8 @@ const App: React.FC = () => {
 					const svgRef = svgRefs!.current![index];
 					return (
 						<DoodleCell
-							key={doodleClass.name}
-							doodleClass={doodleClass}
+							key={doodleClass.className}
+							doodleClass={(doodleClass as unknown) as ComponentClass<DoodleProps>}
 							svgRef={svgRef}
 							onDownloadPNG={() => {
 								renderPNG({
