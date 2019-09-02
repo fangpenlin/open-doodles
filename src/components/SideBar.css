@@ -143,3 +143,19 @@ a:hover {
 	color: #6623d1;
 	text-decoration: underline;
 }
+
+.SideBar-author-block {
+	position: absolute;
+	bottom: 24px;
+	display: flex;
+	flex-direction: column;
+}
+
+.SideBar-author-block a {
+	display: inline-block;
+}
+
+.SideBar-author-block .icon {
+	vertical-align: middle;
+	margin-right: 8px;
+}
