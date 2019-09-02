@@ -49,7 +49,14 @@ const SideBar: React.FC<Props> = (props) => {
 					);
 				})}
 			</div>
-			<a href="#" className="SideBar-button SideBar-w-button" onClick={onDownloadPack}>
+			<a
+				href="#"
+				className="SideBar-button SideBar-w-button"
+				onClick={(event) => {
+					onDownloadPack();
+					event.preventDefault();
+				}}
+			>
 				Download Pack
 			</a>
 			<div className="SideBar-source-block">
