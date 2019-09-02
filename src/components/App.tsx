@@ -56,9 +56,9 @@ function triggerDownload(imageBlob: Blob, fileName: string) {
 	FileSaver.saveAs(imageBlob, fileName);
 }
 
-function downloadPNG(args: { canvasRef: HTMLCanvasElement; svgRef: SVGSVGElement }) {
-	const { canvasRef, svgRef: doodleRef } = args;
-	const svgNode: HTMLElement = ReactDOM.findDOMNode(doodleRef) as HTMLElement;
+function downloadPNG(args: { name: string; canvasRef: HTMLCanvasElement; svgRef: SVGSVGElement }) {
+	const { name, canvasRef, svgRef } = args;
+	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 	const canvas = canvasRef;
 	const ctx = canvas.getContext('2d')!;
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -74,6 +74,7 @@ function downloadPNG(args: { canvasRef: HTMLCanvasElement; svgRef: SVGSVGElement
 	const svgWidth = parseInt(svgNode.getAttribute('width')!);
 	const svgHeight = parseInt(svgNode.getAttribute('height')!);
 
+	// TODO: add background color
 	img.onload = () => {
 		ctx.save();
 		ctx.scale(canvas.width / svgWidth, canvas.height / svgHeight);
@@ -81,7 +82,7 @@ function downloadPNG(args: { canvasRef: HTMLCanvasElement; svgRef: SVGSVGElement
 		ctx.restore();
 		DOMURL.revokeObjectURL(url);
 		canvasRef.toBlob((imageBlob) => {
-			triggerDownload(imageBlob!, 'doodle.png');
+			triggerDownload(imageBlob!, name + '.png');
 		});
 	};
 	img.src = url;
@@ -139,6 +140,7 @@ const App: React.FC = () => {
 							doodleClass={doodleClass}
 							onDownloadPNG={(svgRef) => {
 								downloadPNG({
+									name: doodleClass.name,
 									canvasRef: canvasRef.current!,
 									svgRef
 								});
