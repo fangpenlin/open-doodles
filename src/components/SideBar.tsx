@@ -11,10 +11,11 @@ export interface Props {
 	readonly options: Array<ColorConfig>;
 	readonly selectedIndex?: number;
 	readonly onSelect: (index: number) => void;
+	readonly onDownloadPack: () => void;
 }
 
 const SideBar: React.FC<Props> = (props) => {
-	const { options, selectedIndex, onSelect } = props;
+	const { options, selectedIndex, onSelect, onDownloadPack } = props;
 	return (
 		<div className="sidebar">
 			<h1 className="logo">Open Doodles</h1>
@@ -38,7 +39,7 @@ const SideBar: React.FC<Props> = (props) => {
 					);
 				})}
 			</div>
-			<a href="#" className="button w-button">
+			<a href="#" className="button w-button" onClick={onDownloadPack}>
 				Download Pack
 			</a>
 			<div className="div-block-3">

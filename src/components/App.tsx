@@ -133,6 +133,7 @@ const App: React.FC = () => {
 			selectedIndex
 		}));
 	};
+	const onDownloadPack = () => {};
 	const { selectedIndex, customColor } = state;
 	const config: ColorConfig = selectedIndex !== undefined ? options[selectedIndex] : customColor!;
 	const { backgroundColor } = config;
@@ -161,7 +162,12 @@ const App: React.FC = () => {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	return (
 		<div className="App">
-			<SideBar options={options} onSelect={onSelectOption} selectedIndex={selectedIndex} />
+			<SideBar
+				options={options}
+				onSelect={onSelectOption}
+				selectedIndex={selectedIndex}
+				onDownloadPack={onDownloadPack}
+			/>
 			<div
 				className="section-2"
 				style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', backgroundColor }}
