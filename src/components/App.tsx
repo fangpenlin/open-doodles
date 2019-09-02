@@ -216,6 +216,7 @@ const App: React.FC = () => {
 			svgRefs: svgRefs.current,
 			backgroundColor
 		}).then(triggerDownload);
+		return false;
 	};
 	return (
 		<div className="App">
