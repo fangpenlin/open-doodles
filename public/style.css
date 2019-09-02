@@ -42,70 +42,6 @@
      border-right: 1px solid #000;
    }
    
-   .div-block {
-     width: 24px;
-     height: 24px;
-     margin-right: 8px;
-     border-style: solid;
-     border-width: 1px;
-     border-color: #b3b3b3;
-     border-radius: 20px;
-     background-color: #1d1d1d;
-   }
-   
-   .div-block.accent {
-     background-color: #ff6161;
-   }
-   
-   .div-block.background {
-     background-color: transparent;
-   }
-   
-   .div-block-2 {
-     display: -webkit-box;
-     display: -webkit-flex;
-     display: -ms-flexbox;
-     display: flex;
-     margin-right: -12px;
-     margin-left: -12px;
-     padding: 12px;
-     border-style: solid;
-     border-width: 1px;
-     border-color: transparent;
-     border-radius: 4px;
-   }
-   
-   .div-block-2:hover {
-     background-color: #f5f5f5;
-   }
-   
-   .div-block-2:active {
-     border-color: #000;
-   }
-   
-   .div-block-2:focus {
-     border-style: solid;
-     border-width: 1px;
-     border-color: #6623d1;
-   }
-   
-   .div-block-3 {
-     position: absolute;
-     left: 24px;
-     top: auto;
-     right: 24px;
-     bottom: 24px;
-     display: -webkit-box;
-     display: -webkit-flex;
-     display: -ms-flexbox;
-     display: flex;
-     -webkit-box-orient: vertical;
-     -webkit-box-direction: normal;
-     -webkit-flex-direction: column;
-     -ms-flex-direction: column;
-     flex-direction: column;
-   }
-   
    .logo {
      margin-top: 48px;
      margin-bottom: 120px;
@@ -114,28 +50,6 @@
    
    .div-block-4 {
      margin-bottom: 16px;
-   }
-   
-   .button {
-     display: -webkit-box;
-     display: -webkit-flex;
-     display: -ms-flexbox;
-     display: flex;
-     padding-top: 16px;
-     padding-bottom: 16px;
-     -webkit-box-pack: center;
-     -webkit-justify-content: center;
-     -ms-flex-pack: center;
-     justify-content: center;
-     border-radius: 4px;
-     background-color: #000;
-     color: #fff;
-   }
-   
-   .button:hover {
-     background-color: #6623d1;
-     color: #fff;
-     text-decoration: none;
    }
    
    .div-block-5 {
@@ -168,23 +82,3 @@
    .section-2 {
      margin-left: 264px;
    }
-
-/* ref: http://lea.verou.me/2011/02/checkerboard-pattern-with-css3/ */
-.checkerboard-bg {
-  background-image:
-  -moz-linear-gradient(45deg, #C3C3C3 25%, transparent 25%), 
-  -moz-linear-gradient(-45deg, #C3C3C3 25%, transparent 25%),
-  -moz-linear-gradient(45deg, transparent 75%, #C3C3C3 75%),
-  -moz-linear-gradient(-45deg, transparent 75%, #C3C3C3 75%);
-  background-image:
-    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #C3C3C3), color-stop(.25, transparent)), 
-    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #C3C3C3), color-stop(.25, transparent)),
-    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #C3C3C3)),
-    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #C3C3C3));
-
-  -moz-background-size:10px 10px;
-  background-size:10px 10px;
-  -webkit-background-size:10px 11px; /* override value for shitty webkit */
-
-  background-position:0 0, 5px 0, 5px -5px, 0px 5px;
-}
