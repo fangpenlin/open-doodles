@@ -2,11 +2,15 @@
 	position: relative;
 }
 
+.DoodleCell:hover > .DoodleCell-download-bar {
+	display: flex;
+}
+
 .DoodleCell-download-bar {
+	display: none;
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	display: flex;
 	justify-content: center;
 }
 
