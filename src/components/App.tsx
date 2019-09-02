@@ -85,7 +85,6 @@ function downloadPNG(args: {
 	const svgWidth = parseInt(svgNode.getAttribute('width')!);
 	const svgHeight = parseInt(svgNode.getAttribute('height')!);
 
-	// TODO: add background color
 	img.onload = () => {
 		ctx.save();
 		ctx.scale(canvas.width / svgWidth, canvas.height / svgHeight);
@@ -102,7 +101,11 @@ function downloadPNG(args: {
 function onDownloadSVG(args: { name: string; backgroundColor: string; svgRef: SVGElement }) {
 	const { name, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
+	const childNode = ReactDOM.findDOMNode(svgNode.children[0]) as HTMLElement;
+	const oldFill = childNode.getAttribute('fill');
+	childNode.setAttribute('fill', backgroundColor);
 	const data = svgNode.outerHTML;
+	childNode.setAttribute('fill', oldFill!);
 	const svg = new Blob([ data ], { type: 'image/svg+xml' });
 	triggerDownload(svg, name + '.svg');
 }
