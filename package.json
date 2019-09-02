@@ -17,7 +17,8 @@
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
 		"fang-pen-react-scripts": "3.1.2",
-		"typescript": "3.5.3"
+		"typescript": "3.5.3",
+		"eslint-utils@": "^1.4.1"
 	},
 	"scripts": {
 		"start": "react-scripts start",
