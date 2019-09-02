@@ -3,7 +3,7 @@ import './App.css';
 import * as FileSaver from 'file-saver';
 import * as ReactDOM from 'react-dom';
 
-import React, { ComponentClass, useRef, useState } from 'react';
+import React, { ComponentClass, MutableRefObject, RefObject, createRef, useRef, useState } from 'react';
 import SideBar, { ColorConfig } from './SideBar';
 
 import BikiniDoodle from './doodles/BikiniDoodle';
@@ -66,7 +66,7 @@ function renderPNG(args: {
 	name: string;
 	backgroundColor: string;
 	canvasRef: HTMLCanvasElement;
-	svgRef: SVGElement;
+	svgRef: SVGSVGElement;
 }): Promise<RenderResult> {
 	const { name, canvasRef, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
@@ -106,10 +106,11 @@ function renderPNG(args: {
 	});
 }
 
-function renderSVG(args: { name: string; backgroundColor: string; svgRef: SVGElement }): Promise<RenderResult> {
+function renderSVG(args: { name: string; backgroundColor: string; svgRef: SVGSVGElement }): Promise<RenderResult> {
 	const { name, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
-	// TODO: maybe we should find a better way to do this?
+	// TODO: maybe we should find a better way to do this? like make each
+	//		 doodle component consume background color as well
 	const childNode = ReactDOM.findDOMNode(svgNode.children[0]) as HTMLElement;
 	const oldFill = childNode.getAttribute('fill');
 	childNode.setAttribute('fill', backgroundColor);
@@ -159,7 +160,8 @@ const App: React.FC = () => {
 		LovingDoodle,
 		PettingDoodle
 	];
-	const canvasRef = useRef<HTMLCanvasElement | null>(null);
+	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const svgRefs = useRef<Array<RefObject<SVGSVGElement>>>(doodles.map(() => createRef<SVGSVGElement>()));
 	return (
 		<div className="App">
 			<SideBar
@@ -172,24 +174,26 @@ const App: React.FC = () => {
 				className="section-2"
 				style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', backgroundColor }}
 			>
-				{doodles.map((doodleClass) => {
+				{doodles.map((doodleClass, index) => {
+					const svgRef = svgRefs!.current![index];
 					return (
 						<DoodleCell
 							key={doodleClass.name}
 							doodleClass={doodleClass}
-							onDownloadPNG={(svgRef) => {
+							svgRef={svgRef}
+							onDownloadPNG={() => {
 								renderPNG({
 									name: doodleClass.name,
 									canvasRef: canvasRef.current!,
 									backgroundColor,
-									svgRef
+									svgRef: svgRef!.current!
 								}).then(triggerDownload);
 							}}
-							onDownloadSVG={(svgRef) => {
+							onDownloadSVG={() => {
 								renderSVG({
 									name: doodleClass.name,
 									backgroundColor,
-									svgRef
+									svgRef: svgRef!.current!
 								}).then(triggerDownload);
 							}}
 							config={config}
