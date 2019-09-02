@@ -55,6 +55,7 @@ const SideBar: React.FC<Props> = (props) => {
 			<div className="SideBar-source-block">
 				<a href="#">
 					<svg
+						className="logo"
 						width="22px"
 						height="22px"
 						viewBox="0 0 22 22"
@@ -83,7 +84,10 @@ const SideBar: React.FC<Props> = (props) => {
 					</svg>
 					Studio
 				</a>
-				<a href="#">Sketch File</a>
+				<a href="#">
+					<img className="logo" src="sketch-logo.png" />
+					Sketch
+				</a>
 			</div>
 		</div>
 	);

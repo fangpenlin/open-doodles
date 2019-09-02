@@ -40,20 +40,18 @@
 }
 
 .SideBar-source-block {
-	position: absolute;
-	left: 24px;
-	top: auto;
-	right: 24px;
-	bottom: 24px;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
+	margin-top: 24px;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
-	-ms-flex-direction: column;
-	flex-direction: column;
+	justify-content: space-between;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.SideBar-source-block .logo {
+	vertical-align: middle;
+	margin-right: 8px;
+	width: 24px;
+	height: 24px;
 }
 
 .SideBar-option-block {
