@@ -70,7 +70,6 @@ function renderPNG(args: {
 	svgRef: SVGSVGElement;
 }): Promise<FileObject> {
 	return new Promise((resolve, reject) => {
-		console.info('@@@@');
 		const { name, canvasRef, backgroundColor, svgRef } = args;
 		const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 		const canvas = canvasRef;
@@ -150,21 +149,19 @@ async function generatePack(args: {
 		});
 	});
 	const zip = new JSZip();
-	const pngFolder = zip.folder('png');
 	const svgFolder = zip.folder('svg');
+	await Promise.all(svgPromises).then((files) => {
+		files.forEach((file) => {
+			svgFolder.file(file.fileName, file.blob);
+		});
+	});
 
-	await Promise.all([
-		Promise.all(pngPromises).then((files) => {
-			files.forEach((file) => {
-				pngFolder.file(file.fileName, file.blob);
-			});
-		}),
-		Promise.all(svgPromises).then((files) => {
-			files.forEach((file) => {
-				svgFolder.file(file.fileName, file.blob);
-			});
-		})
-	]);
+	const pngFolder = zip.folder('png');
+	for (const promise of pngPromises) {
+		const file = await promise;
+		pngFolder.file(file.fileName, file.blob);
+	}
+
 	const blob = await zip.generateAsync({ type: 'blob' });
 	return {
 		fileName: 'open-doodles.zip',
