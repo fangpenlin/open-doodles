@@ -22,7 +22,6 @@ const SideBar: React.FC<Props> = (props) => {
 			<div className="div-block-4">
 				<div className="div-block-5">
 					<div>Theme</div>
-					<a href="#">New</a>
 				</div>
 				{options.map((config, index) => {
 					return (
