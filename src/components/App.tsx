@@ -56,7 +56,7 @@ function triggerDownload(imageBlob: Blob, fileName: string) {
 	FileSaver.saveAs(imageBlob, fileName);
 }
 
-function downloadPNG(args: { name: string; canvasRef: HTMLCanvasElement; svgRef: SVGSVGElement }) {
+function downloadPNG(args: { name: string; canvasRef: HTMLCanvasElement; svgRef: SVGElement }) {
 	const { name, canvasRef, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 	const canvas = canvasRef;
@@ -88,7 +88,7 @@ function downloadPNG(args: { name: string; canvasRef: HTMLCanvasElement; svgRef:
 	img.src = url;
 }
 
-function onDownloadSVG(args: { name: string; svgRef: SVGSVGElement }) {
+function onDownloadSVG(args: { name: string; svgRef: SVGElement }) {
 	const { name, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 	const data = svgNode.outerHTML;
@@ -133,7 +133,7 @@ const App: React.FC = () => {
 		PettingDoodle
 	];
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
-	const doodleRefs = useRef<Array<{ current: SVGSVGElement | null }>>(doodles.map(() => createRef<SVGSVGElement>()));
+	const doodleRefs = useRef<Array<{ current: SVGElement | null }>>(doodles.map(() => createRef<SVGElement>()));
 	return (
 		<div className="App">
 			<SideBar options={options} onSelect={onSelectOption} selectedIndex={selectedIndex} />
