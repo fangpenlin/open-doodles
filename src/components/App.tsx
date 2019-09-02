@@ -226,7 +226,7 @@ const App: React.FC = () => {
 				onDownloadPack={onDownloadPack}
 			/>
 			<div
-				className="section-2"
+				className="App-section"
 				style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', backgroundColor }}
 			>
 				{doodles.map((doodleClass, index) => {

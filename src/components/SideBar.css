@@ -1,3 +1,22 @@
+.SideBar {
+	position: fixed;
+	left: 0%;
+	top: 0%;
+	right: auto;
+	bottom: 0%;
+	width: 264px;
+	height: 100vh;
+	padding-right: 36px;
+	padding-left: 36px;
+	border-right: 1px solid #000;
+}
+
+.SideBar-logo {
+	margin-top: 48px;
+	margin-bottom: 120px;
+	font-size: 46px;
+}
+
 .SideBar-button {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -100,4 +119,29 @@
 	-webkit-background-size: 10px 11px; /* override value for shitty webkit */
 
 	background-position: 0 0, 5px 0, 5px -5px, 0px 5px;
+}
+
+.SideBar-theme-header {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+.SideBar-theme-container {
+	margin-bottom: 16px;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #6623d1;
+	text-decoration: underline;
 }

@@ -19,10 +19,10 @@ export interface Props {
 const SideBar: React.FC<Props> = (props) => {
 	const { options, selectedIndex, onSelect, onDownloadPack } = props;
 	return (
-		<div className="sidebar">
-			<h1 className="logo">Open Doodles</h1>
-			<div className="div-block-4">
-				<div className="div-block-5">
+		<div className="SideBar">
+			<h1 className="SideBar-logo">Open Doodles</h1>
+			<div className="SideBar-theme-container">
+				<div className="SideBar-theme-header">
 					<div>Theme</div>
 				</div>
 				{options.map((config, index) => {
