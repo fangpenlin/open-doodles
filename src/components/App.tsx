@@ -45,6 +45,7 @@ const options: Array<ColorConfig> = [
 		accentColor: '#CF536D',
 		backgroundColor: 'green'
 	}
+	// TODO: add more sensable themes
 ];
 
 interface State {
