@@ -71,6 +71,7 @@ function renderPNG(args: {
 }): Promise<FileObject> {
 	return new Promise((resolve, reject) => {
 		const { name, canvasRef, backgroundColor, svgRef } = args;
+		console.info('@@@@@ start rendering', name);
 		const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 		const canvas = canvasRef;
 		const ctx = canvas.getContext('2d')!;
@@ -92,13 +93,16 @@ function renderPNG(args: {
 		const svgWidth = parseInt(svgNode.getAttribute('width')!);
 		const svgHeight = parseInt(svgNode.getAttribute('height')!);
 
+		console.info('@@@@@ loading image', name);
 		img.onload = () => {
+			console.info('@@@@@ loaded image', name);
 			ctx.save();
 			ctx.scale(canvas.width / svgWidth, canvas.height / svgHeight);
 			ctx.drawImage(img, 0, 0);
 			ctx.restore();
 			DOMURL.revokeObjectURL(url);
 			canvasRef.toBlob((blob) => {
+				console.info('@@@@@ to blob', name);
 				resolve({ blob: blob!, fileName: name + '.png' });
 			});
 		};
@@ -131,15 +135,8 @@ async function generatePack(args: {
 	backgroundColor: string;
 }): Promise<FileObject> {
 	const { canvasRef, doodles, svgRefs, backgroundColor } = args;
-	const pngPromises = doodles.map((doodleClass, index) => {
-		const svgRef = svgRefs[index].current!;
-		return renderPNG({
-			name: doodleClass.name,
-			svgRef,
-			canvasRef,
-			backgroundColor
-		});
-	});
+
+	const zip = new JSZip();
 	const svgPromises = doodles.map((doodleClass, index) => {
 		const svgRef = svgRefs[index].current!;
 		return renderSVG({
@@ -148,7 +145,6 @@ async function generatePack(args: {
 			backgroundColor
 		});
 	});
-	const zip = new JSZip();
 	const svgFolder = zip.folder('svg');
 	await Promise.all(svgPromises).then((files) => {
 		files.forEach((file) => {
@@ -156,9 +152,19 @@ async function generatePack(args: {
 		});
 	});
 
+	// Notice: png rendering is using the same canvas, so that we cannot run
+	// 		   it in parallel. if we want better performance, we can make it
+	//		   use a new canvas every single time when rendering.
 	const pngFolder = zip.folder('png');
-	for (const promise of pngPromises) {
-		const file = await promise;
+	for (let i = 0; i < doodles.length; ++i) {
+		const doodleClass = doodles[i];
+		const svgRef = svgRefs[i].current!;
+		const file = await renderPNG({
+			name: doodleClass.name,
+			svgRef,
+			canvasRef,
+			backgroundColor
+		});
 		pngFolder.file(file.fileName, file.blob);
 	}
 
