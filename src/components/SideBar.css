@@ -1,161 +1,167 @@
 .SideBar {
-    position: fixed;
-    left: 0%;
-    top: 0%;
-    right: auto;
-    bottom: 0%;
-    width: 264px;
-    height: 100vh;
-    padding-right: 36px;
-    padding-left: 36px;
-    border-right: 1px solid #000;
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: 0%;
+  width: 264px;
+  height: 100vh;
+  padding-right: 36px;
+  padding-left: 36px;
+  border-right: 1px solid #000;
 }
 
 .SideBar-logo {
-    margin-top: 48px;
-    margin-bottom: 120px;
-    font-size: 46px;
+  margin-top: 48px;
+  margin-bottom: 120px;
+  font-size: 46px;
 }
 
 .SideBar-button {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    border-radius: 4px;
-    background-color: #000;
-    color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: #000;
+  color: #fff;
 }
 
 .SideBar-button:hover {
-    background-color: #6623d1;
-    color: #fff;
-    text-decoration: none;
+  background-color: #6623d1;
+  color: #fff;
+  text-decoration: none;
 }
 
 .SideBar-source-block {
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
-    font-weight: bold;
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .SideBar-source-block .logo {
-    vertical-align: middle;
-    margin-right: 8px;
-    width: 24px;
-    height: 24px;
+  vertical-align: middle;
+  margin-right: 8px;
+  width: 24px;
+  height: 24px;
 }
 
 .SideBar-option-block {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    margin-right: -12px;
-    margin-left: -12px;
-    padding: 12px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: transparent;
-    border-radius: 4px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: -12px;
+  margin-left: -12px;
+  padding: 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  border-radius: 4px;
 }
 
 .SideBar-option-block:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .SideBar-option-block:active {
-    border-color: #000;
+  border-color: #000;
 }
 
 .SideBar-option-block:focus {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #6623d1;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #6623d1;
 }
 
 .SideBar-option {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #b3b3b3;
-    border-radius: 20px;
-    background-color: #1d1d1d;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b3b3b3;
+  border-radius: 20px;
+  background-color: #1d1d1d;
 }
 
 .SideBar-option.accent {
-    background-color: #ff6161;
+  background-color: #ff6161;
 }
 
 .SideBar-option.background {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 /* ref: http://lea.verou.me/2011/02/checkerboard-pattern-with-css3/ */
 .SideBar-option.checkerboard-bg {
-    background-image: -moz-linear-gradient(45deg, #c3c3c3 25%, transparent 25%),
-        -moz-linear-gradient(-45deg, #c3c3c3 25%, transparent 25%),
-        -moz-linear-gradient(45deg, transparent 75%, #c3c3c3 75%),
-        -moz-linear-gradient(-45deg, transparent 75%, #c3c3c3 75%);
-    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, #c3c3c3), color-stop(.25, transparent)),
-        -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, #c3c3c3), color-stop(.25, transparent)),
-        -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, #c3c3c3)),
-        -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, #c3c3c3));
+  background-image: -moz-linear-gradient(45deg, #c3c3c3 25%, transparent 25%),
+    -moz-linear-gradient(-45deg, #c3c3c3 25%, transparent 25%),
+    -moz-linear-gradient(45deg, transparent 75%, #c3c3c3 75%),
+    -moz-linear-gradient(-45deg, transparent 75%, #c3c3c3 75%);
+  background-image: -webkit-gradient(
+      linear,
+      0 100%,
+      100% 0,
+      color-stop(0.25, #c3c3c3),
+      color-stop(0.25, transparent)
+    ),
+    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.25, #c3c3c3), color-stop(0.25, transparent)),
+    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.75, transparent), color-stop(0.75, #c3c3c3)),
+    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.75, transparent), color-stop(0.75, #c3c3c3));
 
-    -moz-background-size: 10px 10px;
-    background-size: 10px 10px;
-    -webkit-background-size: 10px 11px; /* override value for shitty webkit */
+  -moz-background-size: 10px 10px;
+  background-size: 10px 10px;
+  -webkit-background-size: 10px 11px; /* override value for shitty webkit */
 
-    background-position: 0 0, 5px 0, 5px -5px, 0px 5px;
+  background-position: 0 0, 5px 0, 5px -5px, 0px 5px;
 }
 
 .SideBar-theme-header {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .SideBar-theme-container {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 a {
-    color: #000;
-    text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
 
 a:hover {
-    color: #6623d1;
-    text-decoration: underline;
+  color: #6623d1;
+  text-decoration: underline;
 }
 
 .SideBar-author-block {
-    position: absolute;
-    bottom: 24px;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .SideBar-author-block a {
-    display: inline-block;
+  display: inline-block;
 }
 
 .SideBar-author-block .icon {
-    vertical-align: middle;
-    margin-right: 8px;
+  vertical-align: middle;
+  margin-right: 8px;
 }

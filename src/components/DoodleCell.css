@@ -1,22 +1,22 @@
 .DoodleCell {
-    position: relative;
+  position: relative;
 }
 
 .DoodleCell:hover > .DoodleCell-download-bar {
-    display: flex;
+  display: flex;
 }
 
 .DoodleCell-download-bar {
-    display: none;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    justify-content: center;
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
 }
 
 .DoodleCell-download-botton {
-    border: 2px solid black;
-    padding: 4px 16px;
-    margin: 0 8px;
-    font-weight: bold;
+  border: 2px solid black;
+  padding: 4px 16px;
+  margin: 0 8px;
+  font-weight: bold;
 }
