@@ -71,7 +71,6 @@ function renderPNG(args: {
 }): Promise<FileObject> {
 	return new Promise((resolve, reject) => {
 		const { name, canvasRef, backgroundColor, svgRef } = args;
-		console.info('@@@@@ start rendering', name);
 		const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 		const canvas = canvasRef;
 		const ctx = canvas.getContext('2d')!;
@@ -93,16 +92,13 @@ function renderPNG(args: {
 		const svgWidth = parseInt(svgNode.getAttribute('width')!);
 		const svgHeight = parseInt(svgNode.getAttribute('height')!);
 
-		console.info('@@@@@ loading image', name);
 		img.onload = () => {
-			console.info('@@@@@ loaded image', name);
 			ctx.save();
 			ctx.scale(canvas.width / svgWidth, canvas.height / svgHeight);
 			ctx.drawImage(img, 0, 0);
 			ctx.restore();
 			DOMURL.revokeObjectURL(url);
 			canvasRef.toBlob((blob) => {
-				console.info('@@@@@ to blob', name);
 				resolve({ blob: blob!, fileName: name + '.png' });
 			});
 		};
