@@ -3,7 +3,7 @@ import './App.css';
 import * as FileSaver from 'file-saver';
 import * as ReactDOM from 'react-dom';
 
-import React, { ComponentClass, createRef, useRef, useState } from 'react';
+import React, { ComponentClass, useRef, useState } from 'react';
 import SideBar, { ColorConfig } from './SideBar';
 
 import BikiniDoodle from './doodles/BikiniDoodle';
@@ -57,12 +57,22 @@ function triggerDownload(imageBlob: Blob, fileName: string) {
 	FileSaver.saveAs(imageBlob, fileName);
 }
 
-function downloadPNG(args: { name: string; canvasRef: HTMLCanvasElement; svgRef: SVGElement }) {
-	const { name, canvasRef, svgRef } = args;
+function downloadPNG(args: {
+	name: string;
+	backgroundColor: string;
+	canvasRef: HTMLCanvasElement;
+	svgRef: SVGElement;
+}) {
+	const { name, canvasRef, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 	const canvas = canvasRef;
 	const ctx = canvas.getContext('2d')!;
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	ctx.save();
+	ctx.fillStyle = backgroundColor;
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.restore();
 
 	const anyWindow = window as any;
 	const DOMURL = anyWindow.URL || anyWindow.webkitURL || window;
@@ -89,8 +99,8 @@ function downloadPNG(args: { name: string; canvasRef: HTMLCanvasElement; svgRef:
 	img.src = url;
 }
 
-function onDownloadSVG(args: { name: string; svgRef: SVGElement }) {
-	const { name, svgRef } = args;
+function onDownloadSVG(args: { name: string; backgroundColor: string; svgRef: SVGElement }) {
+	const { name, backgroundColor, svgRef } = args;
 	const svgNode: HTMLElement = ReactDOM.findDOMNode(svgRef) as HTMLElement;
 	const data = svgNode.outerHTML;
 	const svg = new Blob([ data ], { type: 'image/svg+xml' });
@@ -134,7 +144,6 @@ const App: React.FC = () => {
 		PettingDoodle
 	];
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
-	const doodleRefs = useRef<Array<{ current: SVGElement | null }>>(doodles.map(() => createRef<SVGElement>()));
 	return (
 		<div className="App">
 			<SideBar options={options} onSelect={onSelectOption} selectedIndex={selectedIndex} />
@@ -151,12 +160,14 @@ const App: React.FC = () => {
 								downloadPNG({
 									name: doodleClass.name,
 									canvasRef: canvasRef.current!,
+									backgroundColor,
 									svgRef
 								});
 							}}
 							onDownloadSVG={(svgRef) => {
 								onDownloadSVG({
 									name: doodleClass.name,
+									backgroundColor,
 									svgRef
 								});
 							}}
