@@ -1,4 +1,4 @@
 export default interface Props {
-	readonly inkColor: string;
-	readonly accentColor: string;
+    readonly inkColor: string;
+    readonly accentColor: string;
 };
