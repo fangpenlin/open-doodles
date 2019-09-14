@@ -22,12 +22,12 @@
 }
 
 .DoodleCell:hover > .DoodleCell-download-bar,
-.DoodleCell:focus > .DoodleCell-download-bar {
+.DoodleCell.active > .DoodleCell-download-bar {
   opacity: 1;
 }
 
 .DoodleCell:hover svg,
-.DoodleCell:focus svg {
+.DoodleCell.active svg {
   transform: scale3d(1.1, 1.1, 1);
 }
 

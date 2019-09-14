@@ -5,27 +5,33 @@ import React, { ComponentClass, RefObject } from "react";
 import { default as DoodleProps } from "./doodles/Props";
 
 export interface Props {
-  readonly tabIndex: number;
   readonly doodleClass: ComponentClass<DoodleProps>;
+  readonly onClick: () => void;
   readonly onDownloadPNG: () => void;
   readonly onDownloadSVG: () => void;
+  readonly active: boolean;
   readonly svgRef?: RefObject<SVGSVGElement>;
   readonly config: DoodleProps;
 }
 
 const DoodleCell: React.FC<Props> = props => {
   const {
-    tabIndex,
     doodleClass,
+    onClick,
     onDownloadPNG,
     onDownloadSVG,
+    active,
     svgRef,
     config
   } = props;
   // Notice: somehow jsx need class name to be captalized
   const DoodleClass: ComponentClass<DoodleProps> = doodleClass;
+
   return (
-    <div className="DoodleCell" tabIndex={tabIndex}>
+    <div
+      className={active ? "DoodleCell active" : "DoodleCell"}
+      onClick={onClick}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1024 768"
