@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  font-size: 14px;
 }
 
 .SideBar-logo {
@@ -152,8 +153,6 @@ a:hover {
 }
 
 .SideBar-author-block {
-  position: absolute;
-  bottom: 24px;
   display: flex;
   flex-direction: column;
 }
