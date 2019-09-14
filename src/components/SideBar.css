@@ -53,11 +53,17 @@
 .SideBar-source-block .logo {
   vertical-align: middle;
   max-width: 100%;
-  width: 24px;
+  width: 22px;
+  height: 22px;
 }
 
 .SideBar-source-block .link {
   padding-left: 8px;
+}
+
+.SideBar-source-block a {
+  display: flex;
+  align-items: center;
 }
 
 .SideBar-theme-grid {
