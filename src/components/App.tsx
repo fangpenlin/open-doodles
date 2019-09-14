@@ -256,9 +256,6 @@ const App: React.FC = () => {
       <div
         className="App-section"
         style={{
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
           backgroundColor
         }}
       >

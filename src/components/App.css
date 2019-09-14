@@ -24,6 +24,8 @@
 
 .App-section {
   margin-left: 264px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @keyframes App-logo-spin {
