@@ -5,7 +5,6 @@ import * as ReactDOM from "react-dom";
 
 import React, {
   ComponentClass,
-  MutableRefObject,
   RefObject,
   createRef,
   useRef,

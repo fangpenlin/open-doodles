@@ -12,9 +12,23 @@
    /* ==========================================================================
       Start of custom Webflow CSS
       ========================================================================== */
-   body {
-     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-     color: #000;
-     font-size: 16px;
-     line-height: 1.5em;
-   }
+body {
+  font-family: Gordita, sans-serif;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+/* TODO: get the font into project? */
+@font-face {
+  font-family: 'Gordita';
+  src: url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea6ed3ee98f8a05940_gorditabold-webfont.woff2') format('woff2'), url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea99c8ff0c4ad71a3e_gorditabold-webfont.eot') format('embedded-opentype'), url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbeaca4f1a5075bd2b8c_gorditabold-webfont.woff') format('woff'), url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea9883e8936233606b_gorditabold-webfont.ttf') format('truetype'), url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea6ed3eee015a05942_gorditabold-webfont.svg') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gordita';
+  src: url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea6ed3eebd54a05941_gorditaregular-webfont.woff2') format('woff2'), url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea99c8ff666ad71a3f_gorditaregular-webfont.eot') format('embedded-opentype'), url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea371eb760aaf8121b_gorditaregular-webfont.woff') format('woff'), url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea9883e8efa033606c_gorditaregular-webfont.ttf') format('truetype'), url('https://assets.website-files.com/5d5d5904f8a21bfe5ff69367/5d64cbea9883e87ddd33606d_gorditaregular-webfont.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}

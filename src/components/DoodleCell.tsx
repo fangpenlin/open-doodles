@@ -1,11 +1,6 @@
 import "./DoodleCell.css";
 
-import React, {
-  ComponentClass,
-  MutableRefObject,
-  RefObject,
-  useRef
-} from "react";
+import React, { ComponentClass, RefObject } from "react";
 
 import { default as DoodleProps } from "./doodles/Props";
 

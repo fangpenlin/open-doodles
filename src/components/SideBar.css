@@ -6,14 +6,12 @@
   bottom: 0%;
   width: 264px;
   height: 100vh;
-  padding-right: 36px;
-  padding-left: 36px;
-  border-right: 1px solid #000;
+  padding: 32px 24px;
 }
 
 .SideBar-logo {
-  margin-top: 48px;
-  margin-bottom: 120px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   font-size: 46px;
 }
 
@@ -22,8 +20,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding: 12px 20px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -31,6 +28,7 @@
   border-radius: 4px;
   background-color: #000;
   color: #fff;
+  font-weight: 700;
 }
 
 .SideBar-button:hover {

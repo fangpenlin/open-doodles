@@ -1,6 +1,5 @@
 import "./SideBar.css";
 
-import { default as DoodleProps } from "./doodles/Props";
 import React from "react";
 
 export interface ColorConfig {
@@ -45,7 +44,7 @@ const SideBar: React.FC<Props> = props => {
               />
               <div
                 className={
-                  config.backgroundColor == "#FFFFFF00"
+                  config.backgroundColor === "#FFFFFF00"
                     ? "SideBar-option checkerboard-bg"
                     : "SideBar-option"
                 }
@@ -55,8 +54,7 @@ const SideBar: React.FC<Props> = props => {
           );
         })}
       </div>
-      <a
-        href="#"
+      <button
         className="SideBar-button SideBar-w-button"
         onClick={event => {
           onDownloadPack();
@@ -64,7 +62,7 @@ const SideBar: React.FC<Props> = props => {
         }}
       >
         Download Pack
-      </a>
+      </button>
       <div className="SideBar-source-block">
         <a href="#">
           <svg
@@ -78,9 +76,9 @@ const SideBar: React.FC<Props> = props => {
             <g
               id="Web-App"
               stroke="none"
-              stroke-width="1"
+              strokeWidth="1"
               fill="none"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             >
               <g id="Desktop-HD" transform="translate(-24.000000, -550.000000)">
                 <g
@@ -134,7 +132,7 @@ const SideBar: React.FC<Props> = props => {
               stroke="none"
               stroke-width="1"
               fill="none"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             >
               <g
                 id="Desktop-HD"
@@ -167,9 +165,9 @@ const SideBar: React.FC<Props> = props => {
             <g
               id="Web-App"
               stroke="none"
-              stroke-width="1"
+              strokeWidth="1"
               fill="none"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             >
               <g
                 id="Desktop-HD"
