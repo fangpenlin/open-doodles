@@ -3,6 +3,12 @@
   width: 33%;
 }
 
+@media (max-width: 991px) {
+  .DoodleCell {
+    width: 50%;
+  }
+}
+
 .DoodleCell svg {
   transform: scale3d(1, 1, 1);
   transform-style: preserve-3d;
