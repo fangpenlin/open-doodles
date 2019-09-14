@@ -1,9 +1,6 @@
 import "./SideBar.css";
 
-import GlyphCode from "./icons/GlyphCode";
-import GlyphColor from "./icons/GlyphColor";
 import React from "react";
-import StudioLogo from "./icons/StudioLogo";
 
 export interface ColorConfig {
   readonly inkColor: string;
@@ -67,12 +64,12 @@ const SideBar: React.FC<Props> = props => {
         </button>
         <div className="SideBar-source-block">
           <a href="#">
-            <StudioLogo />
-            Studio File
+            <img className="logo" src="studio-logo.svg" />
+            <span className="link">Studio File</span>
           </a>
           <a href="#">
             <img className="logo" src="sketch-logo.png" />
-            Sketch File
+            <span className="link">Sketch File</span>
           </a>
         </div>
       </div>

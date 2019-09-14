@@ -45,14 +45,18 @@
   margin-top: 24px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 12px;
 }
 
 .SideBar-source-block .logo {
   vertical-align: middle;
-  margin-right: 8px;
+  max-width: 100%;
   width: 24px;
-  height: 24px;
+}
+
+.SideBar-source-block .link {
+  padding-left: 8px;
 }
 
 .SideBar-option-block {
