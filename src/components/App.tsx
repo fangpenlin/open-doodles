@@ -22,6 +22,7 @@ import JSZip from "jszip";
 import JumpingDoodle from "./doodles/JumpingDoodle";
 import LovingDoodle from "./doodles/LovingDoodle";
 import MeditatingDoodle from "./doodles/MeditatingDoodle";
+import MobileSideBar from "./MobileSideBar";
 import MoshingDoodle from "./doodles/MoshingDoodle";
 import PettingDoodle from "./doodles/PettingDoodle";
 import ReadingDoodle from "./doodles/ReadingDoodle";
@@ -286,6 +287,12 @@ const App: React.FC = () => {
           );
         })}
       </div>
+      <MobileSideBar
+        options={options}
+        onSelect={onSelectOption}
+        selectedIndex={selectedIndex}
+        onDownloadPack={onDownloadPack}
+      />
       <canvas
         ref={canvasRef}
         style={{ display: "none" }}

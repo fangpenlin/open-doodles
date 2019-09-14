@@ -142,7 +142,6 @@
   background-color: transparent;
 }
 
-/* ref: http://lea.verou.me/2011/02/checkerboard-pattern-with-css3/ */
 .SideBar-option.checkerboard-bg {
   background-color: transparent;
   background-image: url(opacity-pattern.png);
