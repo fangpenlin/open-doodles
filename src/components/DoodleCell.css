@@ -1,5 +1,6 @@
 .DoodleCell {
   position: relative;
+  width: 33%;
 }
 
 .DoodleCell svg {

@@ -20,8 +20,6 @@ const DoodleCell: React.FC<Props> = props => {
     <div className="DoodleCell">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="400px"
-        height="300px"
         viewBox="0 0 1024 768"
         version="1.1"
         ref={svgRef}
