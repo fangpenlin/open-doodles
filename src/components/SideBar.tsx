@@ -130,7 +130,7 @@ const SideBar: React.FC<Props> = props => {
             <g
               id="Web-App"
               stroke="none"
-              stroke-width="1"
+              strokeWidth="1"
               fill="none"
               fillRule="evenodd"
             >
