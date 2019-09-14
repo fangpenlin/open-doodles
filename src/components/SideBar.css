@@ -167,3 +167,7 @@ a:hover {
 .SideBar-author-block .icon {
   vertical-align: middle;
 }
+
+.SideBar-author-block .link {
+  padding-left: 8px;
+}

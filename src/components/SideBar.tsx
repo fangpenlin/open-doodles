@@ -75,10 +75,12 @@ const SideBar: React.FC<Props> = props => {
       </div>
       <div className="SideBar-author-block">
         <a href="https://twitter.com/pablostanley">
-          <img src="icon-design.svg" /> Pablo Stanley
+          <img src="icon-design.svg" />
+          <span className="link">Pablo Stanley</span>
         </a>
         <a href="https://twitter.com/fangpenlin">
-          <img src="icon-code.svg" /> Fang-Pen Lin
+          <img src="icon-code.svg" />
+          <span className="link">Fang-Pen Lin</span>
         </a>
       </div>
     </div>
