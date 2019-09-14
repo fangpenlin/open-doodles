@@ -31,3 +31,10 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+@media (max-width: 767px) {
+  body { 
+      padding-right: 16px;
+      padding-left: 16px;
+  }
+}

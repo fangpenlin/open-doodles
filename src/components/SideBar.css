@@ -13,6 +13,26 @@
   font-size: 14px;
 }
 
+@media (max-width: 991px) {
+  .SideBar {
+    width: 256px;
+  }
+}
+
+@media (max-width: 767px) {
+  .SideBar {
+    position: relative;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: auto;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 .SideBar-logo {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -138,6 +158,12 @@
   margin-bottom: 16px;
 }
 
+@media (max-width: 767px) {
+  .SideBar-theme-container {
+    display: none;
+  }
+}
+
 a {
   color: #000;
   text-decoration: none;
@@ -151,6 +177,12 @@ a:hover {
 .SideBar-author-block {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .SideBar-author-block {
+    display: none;
+  }
 }
 
 .SideBar-author-block a {
