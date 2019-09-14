@@ -15,8 +15,16 @@
 }
 
 .DoodleCell-download-botton {
-  border: 2px solid black;
-  padding: 4px 16px;
-  margin: 0 8px;
+  background-color: #000;
+  color: #fff;
   font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.DoodleCell-download-botton:hover {
+  background-color: #6623d1;
+  color: #fff;
 }
