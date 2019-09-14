@@ -24,35 +24,37 @@ const SideBar: React.FC<Props> = props => {
         <div className="SideBar-theme-header">
           <div>Theme</div>
         </div>
-        {options.map((config, index) => {
-          return (
-            <div
-              key={index}
-              className="SideBar-option-block"
-              style={{
-                ...(index === selectedIndex ? { borderColor: "black" } : {})
-              }}
-              onClick={() => onSelect(index)}
-            >
+        <div className="SideBar-theme-grid">
+          {options.map((config, index) => {
+            return (
               <div
-                className="SideBar-option"
-                style={{ backgroundColor: config.inkColor }}
-              />
-              <div
-                className="SideBar-option"
-                style={{ backgroundColor: config.accentColor }}
-              />
-              <div
-                className={
-                  config.backgroundColor === "#FFFFFF00"
-                    ? "SideBar-option checkerboard-bg"
-                    : "SideBar-option"
-                }
-                style={{ backgroundColor: config.backgroundColor }}
-              />
-            </div>
-          );
-        })}
+                key={index}
+                className="SideBar-option-block"
+                style={{
+                  ...(index === selectedIndex ? { borderColor: "black" } : {})
+                }}
+                onClick={() => onSelect(index)}
+              >
+                <div
+                  className="SideBar-option"
+                  style={{ backgroundColor: config.inkColor }}
+                />
+                <div
+                  className="SideBar-option"
+                  style={{ backgroundColor: config.accentColor }}
+                />
+                <div
+                  className={
+                    config.backgroundColor === "#FFFFFF00"
+                      ? "SideBar-option checkerboard-bg"
+                      : "SideBar-option"
+                  }
+                  style={{ backgroundColor: config.backgroundColor }}
+                />
+              </div>
+            );
+          })}
+        </div>
         <button
           className="SideBar-button SideBar-w-button"
           onClick={event => {

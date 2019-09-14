@@ -24,6 +24,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
   padding: 12px 20px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -59,18 +60,26 @@
   padding-left: 8px;
 }
 
+.SideBar-theme-grid {
+  width: 100%;
+  margin-bottom: 8px;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto auto auto;
+  grid-template-rows: auto auto auto;
+  display: grid;
+  grid-auto-columns: 1fr;
+}
+
 .SideBar-option-block {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  margin-right: -12px;
-  margin-left: -12px;
   padding: 12px;
   border-style: solid;
   border-width: 1px;
   border-color: transparent;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .SideBar-option-block:hover {
@@ -88,8 +97,8 @@
 }
 
 .SideBar-option {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   margin-right: 8px;
   border-style: solid;
   border-width: 1px;
@@ -108,26 +117,10 @@
 
 /* ref: http://lea.verou.me/2011/02/checkerboard-pattern-with-css3/ */
 .SideBar-option.checkerboard-bg {
-  background-image: -moz-linear-gradient(45deg, #c3c3c3 25%, transparent 25%),
-    -moz-linear-gradient(-45deg, #c3c3c3 25%, transparent 25%),
-    -moz-linear-gradient(45deg, transparent 75%, #c3c3c3 75%),
-    -moz-linear-gradient(-45deg, transparent 75%, #c3c3c3 75%);
-  background-image: -webkit-gradient(
-      linear,
-      0 100%,
-      100% 0,
-      color-stop(0.25, #c3c3c3),
-      color-stop(0.25, transparent)
-    ),
-    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.25, #c3c3c3), color-stop(0.25, transparent)),
-    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.75, transparent), color-stop(0.75, #c3c3c3)),
-    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.75, transparent), color-stop(0.75, #c3c3c3));
-
-  -moz-background-size: 10px 10px;
-  background-size: 10px 10px;
-  -webkit-background-size: 10px 11px; /* override value for shitty webkit */
-
-  background-position: 0 0, 5px 0, 5px -5px, 0px 5px;
+  background-color: transparent;
+  background-image: url(opacity-pattern.png);
+  background-position: 0px 0px;
+  background-size: 8px;
 }
 
 .SideBar-theme-header {

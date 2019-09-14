@@ -43,14 +43,29 @@ const options: Array<ColorConfig> = [
     backgroundColor: "#FFFFFF00"
   },
   {
+    inkColor: "#2d3d8b",
+    accentColor: "#7fbbca",
+    backgroundColor: "#FFFFFF00"
+  },
+  {
+    inkColor: "#ff6161",
+    accentColor: "#b9efe1",
+    backgroundColor: "#eee98d"
+  },
+  {
     inkColor: "#000000",
-    accentColor: "blue",
+    accentColor: "#CF536D",
     backgroundColor: "#FFFFFF00"
   },
   {
     inkColor: "#000000",
     accentColor: "#CF536D",
-    backgroundColor: "green"
+    backgroundColor: "#FFFFFF00"
+  },
+  {
+    inkColor: "#000000",
+    accentColor: "#CF536D",
+    backgroundColor: "#FFFFFF00"
   }
   // TODO: add more sensable themes
 ];
