@@ -66,22 +66,27 @@ const SideBar: React.FC<Props> = props => {
         </button>
         <div className="SideBar-source-block">
           <a href="#">
-            <img className="logo" src="studio-logo.svg" />
+            <img
+              className="logo"
+              src="studio-logo.svg"
+              alt="Studio file logo"
+            />
             <span className="link">Studio File</span>
           </a>
           <a href="#">
-            <img className="logo" src="sketch-logo.png" />
+            <img className="logo" src="sketch-logo.png" alt="Sketch file log" />
             <span className="link">Sketch File</span>
           </a>
         </div>
+        option
       </div>
       <div className="SideBar-author-block">
         <a href="https://twitter.com/pablostanley">
-          <img src="icon-design.svg" />
+          <img src="icon-design.svg" alt="Design icon" />
           <span className="link">Pablo Stanley</span>
         </a>
         <a href="https://twitter.com/fangpenlin">
-          <img src="icon-code.svg" />
+          <img src="icon-code.svg" alt="Code icon" />
           <span className="link">Fang-Pen Lin</span>
         </a>
       </div>
