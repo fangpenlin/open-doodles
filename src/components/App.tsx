@@ -39,7 +39,7 @@ import ZombieingDoodle from "./doodles/ZombieingDoodle";
 const options: Array<ColorConfig> = [
   {
     inkColor: "#000000",
-    accentColor: "#CF536D",
+    accentColor: "#ff6161",
     backgroundColor: "#FFFFFF00"
   },
   {
@@ -54,17 +54,17 @@ const options: Array<ColorConfig> = [
   },
   {
     inkColor: "#000000",
-    accentColor: "#CF536D",
+    accentColor: "#ff6161",
     backgroundColor: "#FFFFFF00"
   },
   {
     inkColor: "#000000",
-    accentColor: "#CF536D",
+    accentColor: "#ff6161",
     backgroundColor: "#FFFFFF00"
   },
   {
     inkColor: "#000000",
-    accentColor: "#CF536D",
+    accentColor: "#ff6161",
     backgroundColor: "#FFFFFF00"
   }
   // TODO: add more sensable themes
