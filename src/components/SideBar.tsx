@@ -68,11 +68,11 @@ const SideBar: React.FC<Props> = props => {
         <div className="SideBar-source-block">
           <a href="#">
             <StudioLogo />
-            Studio
+            Studio File
           </a>
           <a href="#">
             <img className="logo" src="sketch-logo.png" />
-            Sketch
+            Sketch File
           </a>
         </div>
       </div>

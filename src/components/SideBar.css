@@ -45,8 +45,7 @@
   margin-top: 24px;
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 12px;
 }
 
 .SideBar-source-block .logo {
