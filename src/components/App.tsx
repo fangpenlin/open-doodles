@@ -264,6 +264,7 @@ const App: React.FC = () => {
           const svgRef = svgRefs!.current![index];
           return (
             <DoodleCell
+              tabIndex={index}
               key={doodleClass.name}
               doodleClass={doodleClass}
               svgRef={svgRef}

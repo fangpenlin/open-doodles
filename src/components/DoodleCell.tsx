@@ -5,6 +5,7 @@ import React, { ComponentClass, RefObject } from "react";
 import { default as DoodleProps } from "./doodles/Props";
 
 export interface Props {
+  readonly tabIndex: number;
   readonly doodleClass: ComponentClass<DoodleProps>;
   readonly onDownloadPNG: () => void;
   readonly onDownloadSVG: () => void;
@@ -13,11 +14,18 @@ export interface Props {
 }
 
 const DoodleCell: React.FC<Props> = props => {
-  const { doodleClass, onDownloadPNG, onDownloadSVG, svgRef, config } = props;
+  const {
+    tabIndex,
+    doodleClass,
+    onDownloadPNG,
+    onDownloadSVG,
+    svgRef,
+    config
+  } = props;
   // Notice: somehow jsx need class name to be captalized
   const DoodleClass: ComponentClass<DoodleProps> = doodleClass;
   return (
-    <div className="DoodleCell">
+    <div className="DoodleCell" tabIndex={tabIndex}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1024 768"
