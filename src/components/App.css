@@ -37,6 +37,7 @@
 @media (max-width: 767px) {
   .App-section {
     margin-left: 0;
+    padding-bottom: 200px;
   }
 }
 
