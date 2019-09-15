@@ -21,13 +21,11 @@
   transition: transform 0.4s ease-out;
 }
 
-.DoodleCell:hover > .DoodleCell-download-bar,
-.DoodleCell.active > .DoodleCell-download-bar {
+.DoodleCell:hover > .DoodleCell-download-bar {
   opacity: 1;
 }
 
-.DoodleCell:hover svg,
-.DoodleCell.active svg {
+.DoodleCell:hover svg {
   transform: scale3d(1.1, 1.1, 1);
 }
 

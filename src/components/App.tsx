@@ -73,7 +73,6 @@ const options: Array<ColorConfig> = [
 
 interface State {
   readonly selectedIndex?: number;
-  readonly activeDoodleIndex?: number;
   readonly customColor?: ColorConfig;
 }
 
@@ -268,14 +267,6 @@ const App: React.FC = () => {
               key={doodleClass.name}
               doodleClass={doodleClass}
               svgRef={svgRef}
-              active={state.activeDoodleIndex === index}
-              onClick={() => {
-                setState((oldStatus: State) => ({
-                  ...oldStatus,
-                  activeDoodleIndex:
-                    oldStatus.activeDoodleIndex === index ? undefined : index
-                }));
-              }}
               onDownloadPNG={() => {
                 renderPNG({
                   name: doodleClass.name,
