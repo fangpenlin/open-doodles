@@ -78,7 +78,6 @@ const SideBar: React.FC<Props> = props => {
             <span className="link">Sketch File</span>
           </a>
         </div>
-        option
       </div>
       <div className="SideBar-author-block">
         <a href="https://twitter.com/pablostanley">
