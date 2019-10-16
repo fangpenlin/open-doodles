@@ -39,6 +39,37 @@
   font-size: 46px;
 }
 
+.SideBar-tabs-menu {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.SideBar-link {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  text-decoration: none;
+  padding: 9px 30px;
+  text-align: left;
+  cursor: pointer;
+  color: #222222;
+  background-color: #dddddd;
+}
+
+.SideBar-tab {
+  margin-right: 16px;
+  padding: 8px 2px;
+  background-color: transparent;
+}
+
+.SideBar-tab-current {
+  border-bottom: 2px solid #000;
+  background-color: transparent;
+}
+
 .SideBar-button {
   display: -webkit-box;
   display: -webkit-flex;

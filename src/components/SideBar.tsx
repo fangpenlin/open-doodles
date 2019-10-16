@@ -22,11 +22,11 @@ const SideBar: React.FC<Props> = props => {
       <h1 className="SideBar-logo">Open Doodles</h1>
       <div className="SideBar-theme-container">
         <div className="SideBar-theme-header">
-          <div className="tabs-menu w-tab-menu">
-            <a className="tab w-inline-block w-tab-link w--current">
+          <div className="SideBar-tabs-menu">
+            <a className="SideBar-tab SideBar-link SideBar-tab-current">
               <div>Theme</div>
             </a>
-            <a className="tab w-inline-block w-tab-link">
+            <a className="SideBar-tab SideBar-link">
               <div>Create</div>
             </a>
           </div>
