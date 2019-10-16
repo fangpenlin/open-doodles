@@ -22,7 +22,14 @@ const SideBar: React.FC<Props> = props => {
       <h1 className="SideBar-logo">Open Doodles</h1>
       <div className="SideBar-theme-container">
         <div className="SideBar-theme-header">
-          <div>Theme</div>
+          <div className="tabs-menu w-tab-menu">
+            <a className="tab w-inline-block w-tab-link w--current">
+              <div>Theme</div>
+            </a>
+            <a className="tab w-inline-block w-tab-link">
+              <div>Create</div>
+            </a>
+          </div>
         </div>
         <div className="SideBar-theme-grid">
           {options.map((config, index) => {
