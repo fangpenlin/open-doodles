@@ -117,7 +117,15 @@ const SideBar: React.FC<Props> = props => {
                 <div className="SideBar-color-picker-anchor">
                   <div className="SideBar-color-picker-popover">
                     <div className="SideBar-color-picker-cover"></div>
-                    <SketchPicker />
+                    <SketchPicker
+                      color={customConfig.inkColor}
+                      onChange={color => {
+                        onCustomConfigChange({
+                          ...customConfig,
+                          inkColor: color.hex
+                        });
+                      }}
+                    />
                   </div>
                 </div>
                 <input
