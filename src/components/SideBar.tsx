@@ -60,7 +60,12 @@ const SideBar: React.FC<Props> = props => {
             </a>
           </div>
         </div>
-        <div className="SideBar-theme-grid">
+        <div
+          className="SideBar-theme-grid"
+          style={{
+            ...(tabIndex !== 0 ? { display: "none" } : {})
+          }}
+        >
           {options.map((config, index) => {
             return (
               <div
@@ -90,6 +95,55 @@ const SideBar: React.FC<Props> = props => {
               </div>
             );
           })}
+        </div>
+        <div
+          className="SideBar-color-picker"
+          style={{
+            ...(tabIndex !== 1 ? { display: "none" } : {})
+          }}
+        >
+          <div className="form-block-2 w-form">
+            <form name="email-form" data-name="Email Form">
+              <div className="SideBar-color-picker-input-row">
+                <label htmlFor="ink" className="SideBar-color-picker-label">
+                  Ink
+                </label>
+                <a href="#" className="SideBar-color-picker-button"></a>
+                <input
+                  type="text"
+                  className="SideBar-color-picker-field"
+                  name="ink"
+                  placeholder="#000000"
+                />
+              </div>
+              <div className="SideBar-color-picker-input-row">
+                <label htmlFor="accent" className="SideBar-color-picker-label">
+                  Accent
+                </label>
+                <a href="#" className="SideBar-color-picker-button"></a>
+                <input
+                  type="text"
+                  className="SideBar-color-picker-field"
+                  name="accent"
+                  placeholder="#cf536d"
+                />
+              </div>
+              <div className="SideBar-color-picker-input-row">
+                <label
+                  htmlFor="background"
+                  className="SideBar-color-picker-label"
+                >
+                  Background
+                </label>
+                <a href="#" className="SideBar-color-picker-button"></a>
+                <input
+                  type="text"
+                  className="SideBar-color-picker-field"
+                  name="background"
+                />
+              </div>
+            </form>
+          </div>
         </div>
         <button
           className="SideBar-button SideBar-w-button"
