@@ -260,32 +260,34 @@ const App: React.FC = () => {
           backgroundColor
         }}
       >
-        {doodles.map((doodleClass, index) => {
-          const svgRef = svgRefs!.current![index];
-          return (
-            <DoodleCell
-              key={doodleClass.name}
-              doodleClass={doodleClass}
-              svgRef={svgRef}
-              onDownloadPNG={() => {
-                renderPNG({
-                  name: doodleClass.name,
-                  canvasRef: canvasRef.current!,
-                  backgroundColor,
-                  svgRef: svgRef!.current!
-                }).then(triggerDownload);
-              }}
-              onDownloadSVG={() => {
-                renderSVG({
-                  name: doodleClass.name,
-                  backgroundColor,
-                  svgRef: svgRef!.current!
-                }).then(triggerDownload);
-              }}
-              config={config}
-            />
-          );
-        })}
+        <div className="App-doodle-collection">
+          {doodles.map((doodleClass, index) => {
+            const svgRef = svgRefs!.current![index];
+            return (
+              <DoodleCell
+                key={doodleClass.name}
+                doodleClass={doodleClass}
+                svgRef={svgRef}
+                onDownloadPNG={() => {
+                  renderPNG({
+                    name: doodleClass.name,
+                    canvasRef: canvasRef.current!,
+                    backgroundColor,
+                    svgRef: svgRef!.current!
+                  }).then(triggerDownload);
+                }}
+                onDownloadSVG={() => {
+                  renderSVG({
+                    name: doodleClass.name,
+                    backgroundColor,
+                    svgRef: svgRef!.current!
+                  }).then(triggerDownload);
+                }}
+                config={config}
+              />
+            );
+          })}
+        </div>
       </div>
       <MobileSideBar
         options={options}

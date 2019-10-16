@@ -1,6 +1,23 @@
 .App {
 }
 
+.App-doodle-collection {
+  display: -ms-grid;
+  display: grid;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  grid-template-areas:
+    "."
+    "Area";
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -24,8 +41,6 @@
 
 .App-section {
   margin-left: 264px;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 @media (max-width: 991px) {
