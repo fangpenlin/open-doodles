@@ -62,6 +62,7 @@ const ColorPicker: React.FC<Props> = props => {
               className="ColorPicker-cover"
               onClick={() => {
                 setActive(false);
+                return false;
               }}
             ></div>
             <SketchPicker
