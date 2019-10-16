@@ -71,20 +71,6 @@ const SideBar: React.FC<Props> = props => {
         >
           Download Pack
         </button>
-        <div className="SideBar-source-block">
-          <a href="#">
-            <img
-              className="logo"
-              src="studio-logo.svg"
-              alt="Studio file logo"
-            />
-            <span className="link">Studio File</span>
-          </a>
-          <a href="#">
-            <img className="logo" src="sketch-logo.png" alt="Sketch file log" />
-            <span className="link">Sketch File</span>
-          </a>
-        </div>
       </div>
       <div className="SideBar-author-block">
         <a href="https://twitter.com/pablostanley">

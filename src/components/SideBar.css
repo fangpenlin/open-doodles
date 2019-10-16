@@ -75,8 +75,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  padding: 12px 20px;
+  padding: 8px 16px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -85,6 +84,7 @@
   background-color: #000;
   color: #fff;
   font-weight: 700;
+  width: 100%;
 }
 
 .SideBar-button:hover {
