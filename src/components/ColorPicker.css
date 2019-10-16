@@ -1,0 +1,29 @@
+.ColorPicker-button {
+  width: 20px;
+  height: 20px;
+  margin: 0px 8px;
+  padding: 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b3b3b3;
+  border-radius: 100px;
+}
+
+.ColorPicker-anchor {
+  position: relative;
+  z-index: 1000;
+}
+
+.ColorPicker-popover {
+  position: absolute;
+  top: 20px;
+  z-index: 1000;
+}
+
+.ColorPicker-cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}

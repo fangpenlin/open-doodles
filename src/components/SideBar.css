@@ -131,9 +131,6 @@
   grid-auto-columns: 1fr;
 }
 
-.SideBar-color-picker {
-}
-
 .SideBar-color-picker-input-row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -162,17 +159,6 @@
   font-weight: 600;
 }
 
-.SideBar-color-picker-button {
-  width: 20px;
-  height: 20px;
-  margin: 0px 8px;
-  padding: 0px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #b3b3b3;
-  border-radius: 100px;
-}
-
 .SideBar-color-picker-field {
   max-width: 100px;
   margin-bottom: 0px;
@@ -187,25 +173,6 @@
   vertical-align: middle;
   background-color: #ffffff;
   border: 1px solid #cccccc;
-}
-
-.SideBar-color-picker-anchor {
-  position: relative;
-  z-index: 1000;
-}
-
-.SideBar-color-picker-popover {
-  position: absolute;
-  top: 20px;
-  z-index: 1000;
-}
-
-.SideBar-color-picker-cover {
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
 }
 
 .SideBar-option-block {

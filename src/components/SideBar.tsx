@@ -1,7 +1,7 @@
 import "./SideBar.css";
 
+import ColorPicker from "./ColorPicker";
 import React from "react";
-import { SketchPicker } from "react-color";
 
 export interface ColorConfig {
   readonly inkColor: string;
@@ -113,21 +113,15 @@ const SideBar: React.FC<Props> = props => {
                 <label htmlFor="ink" className="SideBar-color-picker-label">
                   Ink
                 </label>
-                <a href="#" className="SideBar-color-picker-button"></a>
-                <div className="SideBar-color-picker-anchor">
-                  <div className="SideBar-color-picker-popover">
-                    <div className="SideBar-color-picker-cover"></div>
-                    <SketchPicker
-                      color={customConfig.inkColor}
-                      onChange={color => {
-                        onCustomConfigChange({
-                          ...customConfig,
-                          inkColor: color.hex
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
+                <ColorPicker
+                  color={customConfig.inkColor}
+                  onChange={color => {
+                    onCustomConfigChange({
+                      ...customConfig,
+                      inkColor: color
+                    });
+                  }}
+                />
                 <input
                   type="text"
                   className="SideBar-color-picker-field"
@@ -146,7 +140,15 @@ const SideBar: React.FC<Props> = props => {
                 <label htmlFor="accent" className="SideBar-color-picker-label">
                   Accent
                 </label>
-                <a href="#" className="SideBar-color-picker-button"></a>
+                <ColorPicker
+                  color={customConfig.accentColor}
+                  onChange={color => {
+                    onCustomConfigChange({
+                      ...customConfig,
+                      accentColor: color
+                    });
+                  }}
+                />
                 <input
                   type="text"
                   className="SideBar-color-picker-field"
@@ -168,7 +170,15 @@ const SideBar: React.FC<Props> = props => {
                 >
                   Background
                 </label>
-                <a href="#" className="SideBar-color-picker-button"></a>
+                <ColorPicker
+                  color={customConfig.backgroundColor}
+                  onChange={color => {
+                    onCustomConfigChange({
+                      ...customConfig,
+                      backgroundColor: color
+                    });
+                  }}
+                />
                 <input
                   type="text"
                   className="SideBar-color-picker-field"
