@@ -7,6 +7,15 @@
   border-width: 1px;
   border-color: #b3b3b3;
   border-radius: 100px;
+  background-image: url(opacity-pattern.png);
+  background-position: 0px 0px;
+  background-size: 8px;
+  overflow: hidden;
+}
+
+.ColorPicker-button-color {
+  width: 100%;
+  height: 100%;
 }
 
 .ColorPicker-anchor {

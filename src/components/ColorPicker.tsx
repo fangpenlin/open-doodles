@@ -9,10 +9,11 @@ export interface Props {
 }
 
 const alphaToHex = (alpha: number) => {
-  if (alpha == 1) {
+  if (alpha === 1) {
     // just omit alpha hex part if it's 1
     return "";
   }
+  // TODO: seems like odd bug when alpha is 0
   var hex: string = Math.trunc(alpha * 255).toString(16);
   if (hex.length <= 1) {
     hex = "0" + hex;
@@ -44,12 +45,16 @@ const ColorPicker: React.FC<Props> = props => {
       <a
         href="#"
         className="ColorPicker-button"
-        style={{ backgroundColor: color }}
         onClick={() => {
           setActive(true);
           return false;
         }}
-      ></a>
+      >
+        <div
+          className="ColorPicker-button-color"
+          style={{ backgroundColor: color }}
+        />
+      </a>
       {active ? (
         <div className="ColorPicker-anchor">
           <div className="ColorPicker-popover">
