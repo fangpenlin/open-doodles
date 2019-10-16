@@ -188,6 +188,25 @@
   border: 1px solid #cccccc;
 }
 
+.SideBar-color-picker-anchor {
+  position: relative;
+  z-index: 1000;
+}
+
+.SideBar-color-picker-popover {
+  position: absolute;
+  top: 20px;
+  z-index: 1000;
+}
+
+.SideBar-color-picker-cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
 .SideBar-option-block {
   display: flex;
   padding: 12px;

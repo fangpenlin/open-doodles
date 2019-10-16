@@ -1,6 +1,7 @@
 import "./SideBar.css";
 
 import React from "react";
+import { SketchPicker } from "react-color";
 
 export interface ColorConfig {
   readonly inkColor: string;
@@ -113,6 +114,12 @@ const SideBar: React.FC<Props> = props => {
                   Ink
                 </label>
                 <a href="#" className="SideBar-color-picker-button"></a>
+                <div className="SideBar-color-picker-anchor">
+                  <div className="SideBar-color-picker-popover">
+                    <div className="SideBar-color-picker-cover"></div>
+                    <SketchPicker />
+                  </div>
+                </div>
                 <input
                   type="text"
                   className="SideBar-color-picker-field"
