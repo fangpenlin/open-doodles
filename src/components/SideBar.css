@@ -201,7 +201,7 @@ a {
 
 a:hover {
   color: #6623d1;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .SideBar-author-block {

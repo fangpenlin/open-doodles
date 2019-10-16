@@ -10,23 +10,52 @@ export interface ColorConfig {
 
 export interface Props {
   readonly options: Array<ColorConfig>;
-  readonly selectedIndex?: number;
-  readonly onSelect: (index: number) => void;
+  readonly optionIndex?: number;
+  readonly tabIndex: number;
+  readonly onSelectTab: (index: number) => void;
+  readonly onSelectOption: (index: number) => void;
   readonly onDownloadPack: () => void;
 }
 
 const SideBar: React.FC<Props> = props => {
-  const { options, selectedIndex, onSelect, onDownloadPack } = props;
+  const {
+    options,
+    optionIndex,
+    tabIndex,
+    onSelectOption,
+    onSelectTab,
+    onDownloadPack
+  } = props;
   return (
     <div className="SideBar">
       <h1 className="SideBar-logo">Open Doodles</h1>
       <div className="SideBar-theme-container">
         <div className="SideBar-theme-header">
           <div className="SideBar-tabs-menu">
-            <a className="SideBar-tab SideBar-link SideBar-tab-current">
+            <a
+              href="#"
+              className={
+                "SideBar-tab SideBar-link" +
+                (tabIndex === 0 ? " SideBar-tab-current" : "")
+              }
+              onClick={() => {
+                onSelectTab(0);
+                return false;
+              }}
+            >
               <div>Theme</div>
             </a>
-            <a className="SideBar-tab SideBar-link">
+            <a
+              href="#"
+              className={
+                "SideBar-tab SideBar-link" +
+                (tabIndex === 1 ? " SideBar-tab-current" : "")
+              }
+              onClick={() => {
+                onSelectTab(1);
+                return false;
+              }}
+            >
               <div>Create</div>
             </a>
           </div>
@@ -38,9 +67,9 @@ const SideBar: React.FC<Props> = props => {
                 key={index}
                 className="SideBar-option-block"
                 style={{
-                  ...(index === selectedIndex ? { borderColor: "black" } : {})
+                  ...(index === optionIndex ? { borderColor: "black" } : {})
                 }}
-                onClick={() => onSelect(index)}
+                onClick={() => onSelectOption(index)}
               >
                 <div
                   className="SideBar-option"

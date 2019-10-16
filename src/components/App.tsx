@@ -72,7 +72,8 @@ const options: Array<ColorConfig> = [
 ];
 
 interface State {
-  readonly selectedIndex?: number;
+  readonly tabIndex: number;
+  readonly optionIndex: number;
   readonly customColor?: ColorConfig;
 }
 
@@ -199,18 +200,25 @@ async function generatePack(args: {
 
 const App: React.FC = () => {
   const [state, setState] = useState<State>({
-    selectedIndex: 1
+    optionIndex: 1,
+    tabIndex: 0
   });
   // TODO: maybe need to use useCallback to memorize this?
-  const onSelectOption = (selectedIndex: number) => {
+  const onSelectOption = (optionIndex: number) => {
     setState((oldStatus: State) => ({
       ...oldStatus,
-      selectedIndex
+      optionIndex
     }));
   };
-  const { selectedIndex, customColor } = state;
+  const onSelectTab = (tabIndex: number) => {
+    setState((oldStatus: State) => ({
+      ...oldStatus,
+      tabIndex
+    }));
+  };
+  const { optionIndex, tabIndex, customColor } = state;
   const config: ColorConfig =
-    selectedIndex !== undefined ? options[selectedIndex] : customColor!;
+    optionIndex !== undefined ? options[optionIndex] : customColor!;
   const { backgroundColor } = config;
   const doodles: Array<ComponentClass<DoodleProps>> = [
     BikiniDoodle,
@@ -250,8 +258,10 @@ const App: React.FC = () => {
     <div className="App">
       <SideBar
         options={options}
-        onSelect={onSelectOption}
-        selectedIndex={selectedIndex}
+        onSelectOption={onSelectOption}
+        optionIndex={optionIndex}
+        onSelectTab={onSelectTab}
+        tabIndex={tabIndex}
         onDownloadPack={onDownloadPack}
       />
       <div
@@ -292,7 +302,7 @@ const App: React.FC = () => {
       <MobileSideBar
         options={options}
         onSelect={onSelectOption}
-        selectedIndex={selectedIndex}
+        selectedIndex={optionIndex}
         onDownloadPack={onDownloadPack}
       />
       <canvas
