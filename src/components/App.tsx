@@ -74,7 +74,7 @@ const options: Array<ColorConfig> = [
 interface State {
   readonly tabIndex: number;
   readonly optionIndex: number;
-  readonly customColor?: ColorConfig;
+  readonly customConfig: ColorConfig;
 }
 
 interface FileObject {
@@ -201,7 +201,12 @@ async function generatePack(args: {
 const App: React.FC = () => {
   const [state, setState] = useState<State>({
     optionIndex: 1,
-    tabIndex: 0
+    tabIndex: 0,
+    customConfig: {
+      accentColor: "",
+      inkColor: "",
+      backgroundColor: ""
+    }
   });
   // TODO: maybe need to use useCallback to memorize this?
   const onSelectOption = (optionIndex: number) => {
@@ -216,9 +221,22 @@ const App: React.FC = () => {
       tabIndex
     }));
   };
-  const { optionIndex, tabIndex, customColor } = state;
-  const config: ColorConfig =
-    optionIndex !== undefined ? options[optionIndex] : customColor!;
+  const onCustomConfigChange = (customConfig: ColorConfig) => {
+    setState((oldStatus: State) => ({
+      ...oldStatus,
+      customConfig
+    }));
+  };
+  const { optionIndex, tabIndex, customConfig } = state;
+  var config: ColorConfig = options[optionIndex];
+  if (
+    tabIndex === 1 &&
+    customConfig.inkColor.length &&
+    customConfig.accentColor.length &&
+    customConfig.backgroundColor
+  ) {
+    config = customConfig;
+  }
   const { backgroundColor } = config;
   const doodles: Array<ComponentClass<DoodleProps>> = [
     BikiniDoodle,
@@ -258,7 +276,9 @@ const App: React.FC = () => {
     <div className="App">
       <SideBar
         options={options}
+        customConfig={customConfig}
         onSelectOption={onSelectOption}
+        onCustomConfigChange={onCustomConfigChange}
         optionIndex={optionIndex}
         onSelectTab={onSelectTab}
         tabIndex={tabIndex}

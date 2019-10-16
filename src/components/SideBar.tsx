@@ -12,8 +12,10 @@ export interface Props {
   readonly options: Array<ColorConfig>;
   readonly optionIndex?: number;
   readonly tabIndex: number;
+  readonly customConfig: ColorConfig;
   readonly onSelectTab: (index: number) => void;
   readonly onSelectOption: (index: number) => void;
+  readonly onCustomConfigChange: (customConfig: ColorConfig) => void;
   readonly onDownloadPack: () => void;
 }
 
@@ -22,8 +24,10 @@ const SideBar: React.FC<Props> = props => {
     options,
     optionIndex,
     tabIndex,
+    customConfig,
     onSelectOption,
     onSelectTab,
+    onCustomConfigChange,
     onDownloadPack
   } = props;
   return (
@@ -114,6 +118,13 @@ const SideBar: React.FC<Props> = props => {
                   className="SideBar-color-picker-field"
                   name="ink"
                   placeholder="#000000"
+                  value={customConfig.inkColor}
+                  onChange={event => {
+                    onCustomConfigChange({
+                      ...customConfig,
+                      inkColor: event.target.value
+                    });
+                  }}
                 />
               </div>
               <div className="SideBar-color-picker-input-row">
@@ -126,6 +137,13 @@ const SideBar: React.FC<Props> = props => {
                   className="SideBar-color-picker-field"
                   name="accent"
                   placeholder="#cf536d"
+                  value={customConfig.accentColor}
+                  onChange={event => {
+                    onCustomConfigChange({
+                      ...customConfig,
+                      accentColor: event.target.value
+                    });
+                  }}
                 />
               </div>
               <div className="SideBar-color-picker-input-row">
@@ -140,6 +158,13 @@ const SideBar: React.FC<Props> = props => {
                   type="text"
                   className="SideBar-color-picker-field"
                   name="background"
+                  value={customConfig.backgroundColor}
+                  onChange={event => {
+                    onCustomConfigChange({
+                      ...customConfig,
+                      backgroundColor: event.target.value
+                    });
+                  }}
                 />
               </div>
             </form>
