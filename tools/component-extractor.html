@@ -93,6 +93,17 @@
       var treeNode = {}
       collectDefs(symbols, treeNode) 
 
+      treeNode.childNodes[0].childNodes.unshift({
+          nodeName: 'rect',
+          attrs: [
+              {name: "x", value: "0"},
+              {name: "y", value: "0"},
+              {name: "width", value: "1024"},
+              {name: "height", value: "768"},
+          ],
+          childNodes: []
+      })
+
       const dom = outputNode(treeNode, {})
       const output = `
 import Props from "./Props";
