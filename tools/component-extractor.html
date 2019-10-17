@@ -138,64 +138,22 @@
       var inputField = document.getElementById('input-text')
       var previewContainer = document.getElementById('preview-container')
       previewContainer.innerHTML = inputField.value;
-      return;
+      var symbols = document.getElementById('Symbols')
 
-
-      var top = document.getElementById('Top')
-      var defs = new Set()
+    var defs = new Set()
       var treeNode = {}
-      collectDefs(top, defs, treeNode) 
+      collectDefs(symbols, defs, treeNode) 
 
-      var defsNodes = []
-      for (var id of defs) {
-        var node = document.getElementById(id)
-        var defTreeNode = {}
-        convertDef(node, defTreeNode)
-        defsNodes.push(defTreeNode)
-      }
-
-      var typeCount = {}
-      var idMap = {}
-      var idProps = []
-      const sortedDefs = Array.from(defs)
-      var newIDs = []
-      sortedDefs.sort()
-      for (var id of sortedDefs) {
-        var parts = id.split('-')
-        var type = parts[0]
-        var num = parts[1]
-        if (!(type in typeCount)) {
-          typeCount[type] = 1
-        } else {
-          typeCount[type] += 1
-        }
-        const newID = type + typeCount[type]
-        newIDs.push(newID)
-        idProps.push(`  private ${newID} = uniqueId('react-${type}-')`)
-        idMap[id] = newID
-      }
-
-      //console.info('$$$$$', defsNodes)
-      // console.info('$$$$$', defsStr)
-      // console.info(defs, treeNode)
-      treeNode.childNodes.unshift({
-        nodeName: 'defs',
-        attrs: [],
-        childNodes: defsNodes.filter(n => n.nodeName !== 'mask')
-      })
-
-      newIDs.sort()
-      const dom = outputNode(treeNode, idMap)
+      const dom = outputNode(treeNode, {})
       const output = `
-import * as React from 'react'
-import { uniqueId } from 'lodash'
+import Props from "./Props";
+import React from "react";
 
 export default class FIXME extends React.Component {
   static optionValue = 'FIXME'
-  ${idProps.join('\n')} 
 
   render () {
-    const { ${newIDs.join(', ')} } = this
+    const { inkColor, accentColor } = this.props;
     return (
       ${dom}
     )
