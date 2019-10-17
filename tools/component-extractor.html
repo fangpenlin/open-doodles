@@ -24,9 +24,9 @@
 
       for (var attr of node.attributes) {
         var value = attr.value
-        if (id == "Ink" && attr.name === "fill") {
+        if (id.toLowerCase() === "ink" && attr.name === "fill") {
             value = () => "inkColor"
-        } else if (id == "Accent" && attr.name === "fill") {
+        } else if (id.toLowerCase() === "accent" && attr.name === "fill") {
             value = () => "accentColor"
         }
         if (attr.name == "id") {

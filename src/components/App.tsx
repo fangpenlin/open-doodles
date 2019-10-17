@@ -12,20 +12,26 @@ import React, {
 } from "react";
 import SideBar, { ColorConfig } from "./SideBar";
 
-import CoffeeDoddle from "./doodles/CoffeeDoddle";
+import BalletDoodle from "./doodles/BalletDoodle";
 import BikiniDoodle from "./doodles/BikiniDoodle";
+import CoffeeDoddle from "./doodles/CoffeeDoddle";
 import DancingDoodle from "./doodles/DancingDoodle";
+import DogJumpDoodle from "./doodles/DogJumpDoodle";
 import DoodleCell from "./DoodleCell";
 import { default as DoodleProps } from "./doodles/Props";
+import DoogieDoodle from "./doodles/DoogieDoodle";
+import GroovyDoodle from "./doodles/GroovyDoodle";
 import GroovySittingDoodle from "./doodles/GroovySittingDoodle";
 import IceCreamDoodle from "./doodles/IceCreamDoodle";
 import JSZip from "jszip";
 import JumpingDoodle from "./doodles/JumpingDoodle";
+import LayingDoodle from "./doodles/LayingDoodle";
 import LovingDoodle from "./doodles/LovingDoodle";
 import MeditatingDoodle from "./doodles/MeditatingDoodle";
 import MoshingDoodle from "./doodles/MoshingDoodle";
 import PettingDoodle from "./doodles/PettingDoodle";
 import ReadingDoodle from "./doodles/ReadingDoodle";
+import ReadingSideDoodle from "./doodles/ReadingSideDoodle";
 import RollerSkatingDoodle from "./doodles/RollerSkatingDoodle";
 import RollingDoodle from "./doodles/RollingDoodle";
 import RunningDoodle from "./doodles/RunningDoodle";
@@ -244,6 +250,12 @@ const App: React.FC = () => {
   const { backgroundColor } = config;
   const doodles: Array<ComponentClass<DoodleProps>> = [
     CoffeeDoddle,
+    DogJumpDoodle,
+    DoogieDoodle,
+    BalletDoodle,
+    ReadingSideDoodle,
+    LayingDoodle,
+    GroovyDoodle,
     BikiniDoodle,
     SprintingDoodle,
     MoshingDoodle,
