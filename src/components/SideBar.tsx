@@ -67,134 +67,139 @@ const SideBar: React.FC<Props> = props => {
             </a>
           </div>
         </div>
-        <div
-          className="SideBar-theme-grid"
-          style={{
-            ...(tabIndex !== 0 ? { display: "none" } : {})
-          }}
-        >
-          {options.map((config, index) => {
-            return (
-              <div
-                key={index}
-                className="SideBar-option-block"
-                style={{
-                  ...(index === optionIndex ? { borderColor: "black" } : {})
-                }}
-                onClick={() => onSelectOption(index)}
-              >
+        <div className="SideBar-tab-container">
+          <div
+            className="SideBar-theme-grid"
+            style={{
+              ...(tabIndex !== 0 ? { display: "none" } : {})
+            }}
+          >
+            {options.map((config, index) => {
+              return (
                 <div
-                  className="SideBar-option"
-                  style={{ backgroundColor: config.inkColor }}
-                />
-                <div
-                  className="SideBar-option"
-                  style={{ backgroundColor: config.accentColor }}
-                />
-                <div
-                  className={
-                    config.backgroundColor === "#FFFFFF00"
-                      ? "SideBar-option checkerboard-bg"
-                      : "SideBar-option"
-                  }
-                  style={{ backgroundColor: config.backgroundColor }}
-                />
-              </div>
-            );
-          })}
-        </div>
-        <div
-          className="SideBar-color-picker"
-          style={{
-            ...(tabIndex !== 1 ? { display: "none" } : {})
-          }}
-        >
-          <div className="form-block-2 w-form">
-            <form name="email-form" data-name="Email Form">
-              <div className="SideBar-color-picker-input-row">
-                <label htmlFor="ink" className="SideBar-color-picker-label">
-                  Ink
-                </label>
-                <ColorPicker
-                  color={customConfig.inkColor}
-                  onChange={color => {
-                    onCustomConfigChange({
-                      ...customConfig,
-                      inkColor: color
-                    });
+                  key={index}
+                  className="SideBar-option-block"
+                  style={{
+                    ...(index === optionIndex ? { borderColor: "black" } : {})
                   }}
-                />
-                <input
-                  type="text"
-                  className="SideBar-color-picker-field"
-                  name="ink"
-                  placeholder="#000000"
-                  value={customConfig.inkColor}
-                  onChange={event => {
-                    onCustomConfigChange({
-                      ...customConfig,
-                      inkColor: event.target.value
-                    });
-                  }}
-                />
-              </div>
-              <div className="SideBar-color-picker-input-row">
-                <label htmlFor="accent" className="SideBar-color-picker-label">
-                  Accent
-                </label>
-                <ColorPicker
-                  color={customConfig.accentColor}
-                  onChange={color => {
-                    onCustomConfigChange({
-                      ...customConfig,
-                      accentColor: color
-                    });
-                  }}
-                />
-                <input
-                  type="text"
-                  className="SideBar-color-picker-field"
-                  name="accent"
-                  placeholder="#cf536d"
-                  value={customConfig.accentColor}
-                  onChange={event => {
-                    onCustomConfigChange({
-                      ...customConfig,
-                      accentColor: event.target.value
-                    });
-                  }}
-                />
-              </div>
-              <div className="SideBar-color-picker-input-row">
-                <label
-                  htmlFor="background"
-                  className="SideBar-color-picker-label"
+                  onClick={() => onSelectOption(index)}
                 >
-                  Background
-                </label>
-                <ColorPicker
-                  color={customConfig.backgroundColor}
-                  onChange={color => {
-                    onCustomConfigChange({
-                      ...customConfig,
-                      backgroundColor: color
-                    });
-                  }}
-                />
-                <input
-                  type="text"
-                  className="SideBar-color-picker-field"
-                  name="background"
-                  value={customConfig.backgroundColor}
-                  onChange={event => {
-                    onCustomConfigChange({
-                      ...customConfig,
-                      backgroundColor: event.target.value
-                    });
-                  }}
-                />
-              </div>
-            </form>
+                  <div
+                    className="SideBar-option"
+                    style={{ backgroundColor: config.inkColor }}
+                  />
+                  <div
+                    className="SideBar-option"
+                    style={{ backgroundColor: config.accentColor }}
+                  />
+                  <div
+                    className={
+                      config.backgroundColor === "#FFFFFF00"
+                        ? "SideBar-option checkerboard-bg"
+                        : "SideBar-option"
+                    }
+                    style={{ backgroundColor: config.backgroundColor }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div
+            className="SideBar-color-picker"
+            style={{
+              ...(tabIndex !== 1 ? { display: "none" } : {})
+            }}
+          >
+            <div className="form-block-2 w-form">
+              <form name="email-form" data-name="Email Form">
+                <div className="SideBar-color-picker-input-row">
+                  <label htmlFor="ink" className="SideBar-color-picker-label">
+                    Ink
+                  </label>
+                  <ColorPicker
+                    color={customConfig.inkColor}
+                    onChange={color => {
+                      onCustomConfigChange({
+                        ...customConfig,
+                        inkColor: color
+                      });
+                    }}
+                  />
+                  <input
+                    type="text"
+                    className="SideBar-color-picker-field"
+                    name="ink"
+                    placeholder="#000000"
+                    value={customConfig.inkColor}
+                    onChange={event => {
+                      onCustomConfigChange({
+                        ...customConfig,
+                        inkColor: event.target.value
+                      });
+                    }}
+                  />
+                </div>
+                <div className="SideBar-color-picker-input-row">
+                  <label
+                    htmlFor="accent"
+                    className="SideBar-color-picker-label"
+                  >
+                    Accent
+                  </label>
+                  <ColorPicker
+                    color={customConfig.accentColor}
+                    onChange={color => {
+                      onCustomConfigChange({
+                        ...customConfig,
+                        accentColor: color
+                      });
+                    }}
+                  />
+                  <input
+                    type="text"
+                    className="SideBar-color-picker-field"
+                    name="accent"
+                    placeholder="#cf536d"
+                    value={customConfig.accentColor}
+                    onChange={event => {
+                      onCustomConfigChange({
+                        ...customConfig,
+                        accentColor: event.target.value
+                      });
+                    }}
+                  />
+                </div>
+                <div className="SideBar-color-picker-input-row">
+                  <label
+                    htmlFor="background"
+                    className="SideBar-color-picker-label"
+                  >
+                    Background
+                  </label>
+                  <ColorPicker
+                    color={customConfig.backgroundColor}
+                    onChange={color => {
+                      onCustomConfigChange({
+                        ...customConfig,
+                        backgroundColor: color
+                      });
+                    }}
+                  />
+                  <input
+                    type="text"
+                    className="SideBar-color-picker-field"
+                    name="background"
+                    value={customConfig.backgroundColor}
+                    onChange={event => {
+                      onCustomConfigChange({
+                        ...customConfig,
+                        backgroundColor: event.target.value
+                      });
+                    }}
+                  />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
         <button
