@@ -65,21 +65,15 @@ const options: Array<ColorConfig> = [
     backgroundColor: "#eee98d"
   },
   {
-    inkColor: "#000000",
-    accentColor: "#ff6161",
-    backgroundColor: "#FFFFFF00"
+    inkColor: "#0c06c7",
+    accentColor: "#7feb0a",
+    backgroundColor: "#f5efe0"
   },
   {
-    inkColor: "#000000",
-    accentColor: "#ff6161",
-    backgroundColor: "#FFFFFF00"
-  },
-  {
-    inkColor: "#000000",
-    accentColor: "#ff6161",
-    backgroundColor: "#FFFFFF00"
+    inkColor: "#de384c",
+    accentColor: "#9fc3d4",
+    backgroundColor: "#e7ab8e"
   }
-  // TODO: add more sensable themes
 ];
 
 interface State {
