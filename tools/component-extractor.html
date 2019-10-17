@@ -9,42 +9,29 @@
   <meta name="author" content="SitePoint">
 
   <script>
-    function collectDefs (node, defs, treeNode) {
+    function collectDefs (node, treeNode) {
       if (node.nodeName === '#text') {
         return
       }
       treeNode.nodeName = node.nodeName
-      var re = /^url\(#(.*)\)/i;
       var attrs = []
-      var color = false
+
+      const attrsMap = {}
+      for (var attr of node.attributes) {
+          attrsMap[attr.name] = attr.value;
+      }
+      const id = attrsMap['id'];
 
       for (var attr of node.attributes) {
         var value = attr.value
-        if (attr.name === 'xlink:href') {
-          var id = value.substr(1)
-          defs.add(id) 
-          value = (idMap) => "'#' + " + idMap[id]
-        } else if (attr.name === 'id' && node.nodeName === 'mask') {
-          var id = attr.value
-          defs.add(id) 
-          value = (idMap) => idMap[id]
-        } else {
-          var found = value.match(re);
-          if (found) {
-            var id = found[1]
-            value = (idMap) => '`url(#${' + idMap[id] +'})`'
-            defs.add(id)
-          }
+        if (id == "Ink" && attr.name === "fill") {
+            value = () => "inkColor"
+        } else if (id == "Accent" && attr.name === "fill") {
+            value = () => "accentColor"
         }
-
-        /*
-        if (color && attr.name === 'fill') {
-          value = () => 'color'
+        if (attr.name == "id") {
+            continue;
         }
-        // xxx: it's possible id comes after color, but we didn't see it so far
-        if (attr.name === 'id' && attr.value.startsWith('Color/Hair/')) {
-          color = true
-        }*/
 
         attrs.push({
           name: attr.name,
@@ -56,37 +43,7 @@
       var children = []
       for (var child of node.childNodes) {
         var childNode = {}
-        collectDefs(child, defs, childNode)
-        if (childNode.nodeName) {
-          children.push(childNode)
-        }
-      }
-      treeNode.childNodes = children
-    }
-
-    function convertDef (node, treeNode) {
-      if (node.nodeName === '#text') {
-        return
-      }
-      treeNode.nodeName = node.nodeName
-      var attrs = []
-      for (var attr of node.attributes) {
-        var value = attr.value
-        if (attr.name === 'id') {
-          var id = attr.value
-          value = (idMap) => idMap[id]
-        }
-        attrs.push({
-          name: attr.name,
-          value
-        })
-      }
-      treeNode.attrs = attrs
-
-      var children = []
-      for (var child of node.childNodes) {
-        var childNode = {}
-        convertDef(child, childNode)
+        collectDefs(child, childNode)
         if (childNode.nodeName) {
           children.push(childNode)
         }
@@ -116,13 +73,6 @@
           value = value(idMap)
           attrs.push(`${name}={${value}}`)
         } else {
-          if (name === 'id' && value.startsWith('Top/_Resources/')) {
-            return '{this.props.children}'
-          } else if (name === 'id' && value.startsWith('Facial-Hair/')) {
-            return '<FacialHair />'
-          } else if (name === 'id' && value.startsWith('Color/Hair/')) {
-            return "<HairColor maskID={MASK}/>"
-          }
           attrs.push(`${name}='${value}'`)
         }
       }
@@ -140,18 +90,15 @@
       previewContainer.innerHTML = inputField.value;
       var symbols = document.getElementById('Symbols')
 
-    var defs = new Set()
       var treeNode = {}
-      collectDefs(symbols, defs, treeNode) 
+      collectDefs(symbols, treeNode) 
 
       const dom = outputNode(treeNode, {})
       const output = `
 import Props from "./Props";
 import React from "react";
 
-export default class FIXME extends React.Component {
-  static optionValue = 'FIXME'
-
+export default class FIXME extends React.Component<Props> {
   render () {
     const { inkColor, accentColor } = this.props;
     return (

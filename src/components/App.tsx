@@ -12,6 +12,7 @@ import React, {
 } from "react";
 import SideBar, { ColorConfig } from "./SideBar";
 
+import CoffeeDoddle from "./doodles/CoffeeDoddle";
 import BikiniDoodle from "./doodles/BikiniDoodle";
 import DancingDoodle from "./doodles/DancingDoodle";
 import DoodleCell from "./DoodleCell";
@@ -242,6 +243,7 @@ const App: React.FC = () => {
   }
   const { backgroundColor } = config;
   const doodles: Array<ComponentClass<DoodleProps>> = [
+    CoffeeDoddle,
     BikiniDoodle,
     SprintingDoodle,
     MoshingDoodle,

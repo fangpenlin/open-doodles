@@ -2,6 +2,7 @@
 }
 
 .App-doodle-collection {
+  padding-top: 24px;
   display: -ms-grid;
   display: grid;
   -webkit-flex-wrap: wrap;
