@@ -40,6 +40,10 @@
   font-size: 46px;
 }
 
+.SideBar-logo a:hover {
+  color: #000;
+}
+
 .SideBar-tabs-menu {
   display: -webkit-box;
   display: -webkit-flex;

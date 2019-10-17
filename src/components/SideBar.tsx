@@ -33,7 +33,9 @@ const SideBar: React.FC<Props> = props => {
   } = props;
   return (
     <div className="SideBar">
-      <h1 className="SideBar-logo">Open Doodles</h1>
+      <h1 className="SideBar-logo">
+        <a href="https://opendoodles.com">Open Doodles</a>
+      </h1>
       <div className="SideBar-theme-container">
         <div className="SideBar-theme-header">
           <div className="SideBar-tabs-menu">
