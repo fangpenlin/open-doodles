@@ -69,10 +69,11 @@ const SideBar: React.FC<Props> = props => {
         </div>
         <div className="SideBar-tab-container">
           <div
-            className="SideBar-theme-grid"
-            style={{
-              ...(tabIndex !== 0 ? { display: "none" } : {})
-            }}
+            className={
+              tabIndex !== 0
+                ? "SideBar-tab-content SideBar-theme-grid"
+                : "SideBar-tab-content-active SideBar-theme-grid"
+            }
           >
             {options.map((config, index) => {
               return (
@@ -105,10 +106,11 @@ const SideBar: React.FC<Props> = props => {
             })}
           </div>
           <div
-            className="SideBar-color-picker"
-            style={{
-              ...(tabIndex !== 1 ? { display: "none" } : {})
-            }}
+            className={
+              tabIndex !== 1
+                ? "SideBar-tab-content SideBar-color-picker"
+                : "SideBar-tab-content-active SideBar-color-picker"
+            }
           >
             <div className="form-block-2 w-form">
               <form name="email-form" data-name="Email Form">

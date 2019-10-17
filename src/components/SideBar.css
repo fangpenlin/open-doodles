@@ -58,6 +58,7 @@
 
 .SideBar-tab-container {
   min-height: 178px;
+  position: relative;
 }
 
 .SideBar-link {
@@ -81,6 +82,20 @@
 .SideBar-tab-current {
   border-bottom: 2px solid #000;
   background-color: transparent;
+}
+
+.SideBar-tab-content {
+  position: absolute;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  z-index: 0;
+}
+
+.SideBar-tab-content-active {
+  position: absolute;
+  transition: opacity 0.3s ease 0.3s;
+  opacity: 1;
+  z-index: 100;
 }
 
 .SideBar-button {
