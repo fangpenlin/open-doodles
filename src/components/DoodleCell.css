@@ -31,6 +31,9 @@
 }
 
 .DoodleCell svg {
+  transform: scale3d(1, 1, 1);
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease-out;
 }
 
 .DoodleCell:hover > .DoodleCell-download-bar {
@@ -38,6 +41,7 @@
 }
 
 .DoodleCell:hover svg {
+  transform: scale3d(1.1, 1.1, 1);
 }
 
 .DoodleCell-download-bar {
