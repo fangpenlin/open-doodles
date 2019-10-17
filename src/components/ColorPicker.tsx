@@ -49,9 +49,9 @@ const ColorPicker: React.FC<Props> = props => {
             ? "ColorPicker-button ColorPicker-button-active"
             : "ColorPicker-button"
         }
-        onClick={() => {
+        onClick={event => {
           setActive(true);
-          return false;
+          event.preventDefault();
         }}
       >
         <div
@@ -64,9 +64,9 @@ const ColorPicker: React.FC<Props> = props => {
           <div className="ColorPicker-popover">
             <div
               className="ColorPicker-cover"
-              onClick={() => {
+              onClick={event => {
                 setActive(false);
-                return false;
+                event.preventDefault();
               }}
             ></div>
             <SketchPicker

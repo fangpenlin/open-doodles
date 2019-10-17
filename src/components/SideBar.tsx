@@ -45,9 +45,9 @@ const SideBar: React.FC<Props> = props => {
                 "SideBar-tab SideBar-link" +
                 (tabIndex === 0 ? " SideBar-tab-current" : "")
               }
-              onClick={() => {
+              onClick={event => {
                 onSelectTab(0);
-                return false;
+                event.preventDefault();
               }}
             >
               <div>Theme</div>
@@ -58,9 +58,9 @@ const SideBar: React.FC<Props> = props => {
                 "SideBar-tab SideBar-link" +
                 (tabIndex === 1 ? " SideBar-tab-current" : "")
               }
-              onClick={() => {
+              onClick={event => {
                 onSelectTab(1);
-                return false;
+                event.preventDefault();
               }}
             >
               <div>Create</div>
