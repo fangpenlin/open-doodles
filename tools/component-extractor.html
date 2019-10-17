@@ -1,0 +1,232 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <script>
+    function collectDefs (node, defs, treeNode) {
+      if (node.nodeName === '#text') {
+        return
+      }
+      treeNode.nodeName = node.nodeName
+      var re = /^url\(#(.*)\)/i;
+      var attrs = []
+      var color = false
+
+      for (var attr of node.attributes) {
+        var value = attr.value
+        if (attr.name === 'xlink:href') {
+          var id = value.substr(1)
+          defs.add(id) 
+          value = (idMap) => "'#' + " + idMap[id]
+        } else if (attr.name === 'id' && node.nodeName === 'mask') {
+          var id = attr.value
+          defs.add(id) 
+          value = (idMap) => idMap[id]
+        } else {
+          var found = value.match(re);
+          if (found) {
+            var id = found[1]
+            value = (idMap) => '`url(#${' + idMap[id] +'})`'
+            defs.add(id)
+          }
+        }
+
+        /*
+        if (color && attr.name === 'fill') {
+          value = () => 'color'
+        }
+        // xxx: it's possible id comes after color, but we didn't see it so far
+        if (attr.name === 'id' && attr.value.startsWith('Color/Hair/')) {
+          color = true
+        }*/
+
+        attrs.push({
+          name: attr.name,
+          value
+        })
+      }
+      treeNode.attrs = attrs
+
+      var children = []
+      for (var child of node.childNodes) {
+        var childNode = {}
+        collectDefs(child, defs, childNode)
+        if (childNode.nodeName) {
+          children.push(childNode)
+        }
+      }
+      treeNode.childNodes = children
+    }
+
+    function convertDef (node, treeNode) {
+      if (node.nodeName === '#text') {
+        return
+      }
+      treeNode.nodeName = node.nodeName
+      var attrs = []
+      for (var attr of node.attributes) {
+        var value = attr.value
+        if (attr.name === 'id') {
+          var id = attr.value
+          value = (idMap) => idMap[id]
+        }
+        attrs.push({
+          name: attr.name,
+          value
+        })
+      }
+      treeNode.attrs = attrs
+
+      var children = []
+      for (var child of node.childNodes) {
+        var childNode = {}
+        convertDef(child, childNode)
+        if (childNode.nodeName) {
+          children.push(childNode)
+        }
+      }
+      treeNode.childNodes = children
+    }
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function outputNode(node, idMap) {
+      var result = `<${node.nodeName} `
+      var attrs = []
+      for (var attr of node.attrs) {
+        var { name, value } = attr
+        var nameParts = name.split('-')
+        if (nameParts.length > 1) {
+          name = nameParts[0] + nameParts.slice(1).map(n => capitalizeFirstLetter(n))
+        }
+        var nameParts2 = name.split(':')
+        if (nameParts2.length > 1) {
+          name = nameParts2[0] + nameParts2.slice(1).map(n => capitalizeFirstLetter(n))
+        }
+
+        if (typeof value === 'function') {
+          value = value(idMap)
+          attrs.push(`${name}={${value}}`)
+        } else {
+          if (name === 'id' && value.startsWith('Top/_Resources/')) {
+            return '{this.props.children}'
+          } else if (name === 'id' && value.startsWith('Facial-Hair/')) {
+            return '<FacialHair />'
+          } else if (name === 'id' && value.startsWith('Color/Hair/')) {
+            return "<HairColor maskID={MASK}/>"
+          }
+          attrs.push(`${name}='${value}'`)
+        }
+      }
+      result += attrs.join(' ') + '>'
+      for (var child of node.childNodes) {
+        result += outputNode(child, idMap) 
+      }
+      result += `</${node.nodeName}>`
+      return result
+    }
+  
+    function convert() {
+      var inputField = document.getElementById('input-text')
+      var previewContainer = document.getElementById('preview-container')
+      previewContainer.innerHTML = inputField.value;
+      return;
+
+
+      var top = document.getElementById('Top')
+      var defs = new Set()
+      var treeNode = {}
+      collectDefs(top, defs, treeNode) 
+
+      var defsNodes = []
+      for (var id of defs) {
+        var node = document.getElementById(id)
+        var defTreeNode = {}
+        convertDef(node, defTreeNode)
+        defsNodes.push(defTreeNode)
+      }
+
+      var typeCount = {}
+      var idMap = {}
+      var idProps = []
+      const sortedDefs = Array.from(defs)
+      var newIDs = []
+      sortedDefs.sort()
+      for (var id of sortedDefs) {
+        var parts = id.split('-')
+        var type = parts[0]
+        var num = parts[1]
+        if (!(type in typeCount)) {
+          typeCount[type] = 1
+        } else {
+          typeCount[type] += 1
+        }
+        const newID = type + typeCount[type]
+        newIDs.push(newID)
+        idProps.push(`  private ${newID} = uniqueId('react-${type}-')`)
+        idMap[id] = newID
+      }
+
+      //console.info('$$$$$', defsNodes)
+      // console.info('$$$$$', defsStr)
+      // console.info(defs, treeNode)
+      treeNode.childNodes.unshift({
+        nodeName: 'defs',
+        attrs: [],
+        childNodes: defsNodes.filter(n => n.nodeName !== 'mask')
+      })
+
+      newIDs.sort()
+      const dom = outputNode(treeNode, idMap)
+      const output = `
+import * as React from 'react'
+import { uniqueId } from 'lodash'
+
+export default class FIXME extends React.Component {
+  static optionValue = 'FIXME'
+  ${idProps.join('\n')} 
+
+  render () {
+    const { ${newIDs.join(', ')} } = this
+    return (
+      ${dom}
+    )
+  }
+}
+      `
+      document.getElementById('output-text').value = output
+    }
+  
+  </script>
+</head>
+
+<body>
+
+<div>
+    <h2>Input</h2>
+    <textarea id='input-text' rows="12" cols="50"></textarea>
+    <div>
+        <button onclick="convert(); return false;">Convert</button>
+    </div>
+</div>
+
+<div>
+    <h2>Preview</h2>
+    <div id="preview-container" />
+</div>
+
+<div>
+    <h2>Output</h2>
+    <textarea id='output-text' rows="12" cols="50"></textarea>
+</div>
+
+</body>
+</html>
