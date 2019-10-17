@@ -45,6 +45,7 @@
 }
 
 .DoodleCell-download-bar {
+  transition: opacity 0.1s ease-out;
   display: flex;
   opacity: 0;
   position: absolute;
