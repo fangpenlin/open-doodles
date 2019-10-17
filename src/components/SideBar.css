@@ -40,6 +40,10 @@
   font-size: 46px;
 }
 
+.SideBar-logo a {
+  font-weight: 700;
+}
+
 .SideBar-logo a:hover {
   color: #000;
 }
