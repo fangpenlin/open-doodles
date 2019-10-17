@@ -29,7 +29,14 @@
     bottom: auto;
     width: auto;
     height: auto;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
     align-items: stretch;
   }
 }
@@ -38,6 +45,13 @@
   margin-top: 0px;
   margin-bottom: 0px;
   font-size: 46px;
+}
+
+@media (max-width: 767px) {
+  .SideBar-logo {
+    font-size: 32px;
+    text-align: center;
+  }
 }
 
 .SideBar-logo a {
@@ -158,6 +172,17 @@
   grid-auto-columns: 1fr;
 }
 
+@media (max-width: 767px) {
+  .SideBar-theme-grid {
+    width: 100%;
+    grid-auto-flow: row;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+  }
+}
+
 .SideBar-color-picker-input-row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -203,15 +228,23 @@
 }
 
 .SideBar-option-block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   padding: 12px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   border-style: solid;
   border-width: 1px;
   border-color: #f1f1f1;
   border-radius: 8px;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
 }
 
 .SideBar-option-block:hover {
@@ -263,7 +296,11 @@
 
 @media (max-width: 767px) {
   .SideBar-theme-container {
-    display: none;
+    display: block;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 }
 
