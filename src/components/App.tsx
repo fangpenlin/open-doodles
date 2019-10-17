@@ -336,6 +336,16 @@ const App: React.FC = () => {
           })}
         </div>
       </div>
+      <div className="App-author-block">
+        <a href="https://twitter.com/fangpenlin">
+          <img src="icon-code.svg" alt="Code icon" />
+          <span className="link">Fang-Pen Lin</span>
+        </a>
+        <a href="https://twitter.com/pablostanley">
+          <img src="icon-design.svg" alt="Design icon" />
+          <span className="link">Pablo Stanley</span>
+        </a>
+      </div>
       <canvas
         ref={canvasRef}
         style={{ display: "none" }}

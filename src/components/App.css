@@ -65,3 +65,22 @@
     transform: rotate(360deg);
   }
 }
+
+.App-author-block {
+  flex-direction: column;
+  display: none;
+}
+
+.App-author-block a {
+  padding-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+  .App-author-block {
+    display: flex;
+  }
+}
+
+.App-author-block a {
+  display: inline-block;
+}
