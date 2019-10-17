@@ -218,6 +218,10 @@ const App: React.FC = () => {
   const onSelectTab = (tabIndex: number) => {
     setState((oldStatus: State) => ({
       ...oldStatus,
+      customConfig:
+        oldStatus.tabIndex !== tabIndex && tabIndex === 1
+          ? options[optionIndex]
+          : oldStatus.customConfig,
       tabIndex
     }));
   };
