@@ -44,7 +44,11 @@ const ColorPicker: React.FC<Props> = props => {
     <>
       <a
         href="#"
-        className="ColorPicker-button"
+        className={
+          active
+            ? "ColorPicker-button ColorPicker-button-active"
+            : "ColorPicker-button"
+        }
         onClick={() => {
           setActive(true);
           return false;
