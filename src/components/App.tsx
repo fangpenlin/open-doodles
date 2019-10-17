@@ -20,6 +20,7 @@ import DogJumpDoodle from "./doodles/DogJumpDoodle";
 import DoodleCell from "./DoodleCell";
 import { default as DoodleProps } from "./doodles/Props";
 import DoogieDoodle from "./doodles/DoogieDoodle";
+import FloatDoodle from "./doodles/FloatDoodle";
 import GroovyDoodle from "./doodles/GroovyDoodle";
 import GroovySittingDoodle from "./doodles/GroovySittingDoodle";
 import IceCreamDoodle from "./doodles/IceCreamDoodle";
@@ -28,15 +29,19 @@ import JumpingDoodle from "./doodles/JumpingDoodle";
 import LayingDoodle from "./doodles/LayingDoodle";
 import LovingDoodle from "./doodles/LovingDoodle";
 import MeditatingDoodle from "./doodles/MeditatingDoodle";
+import MessyDoodle from "./doodles/MessyDoodle";
 import MoshingDoodle from "./doodles/MoshingDoodle";
 import PettingDoodle from "./doodles/PettingDoodle";
+import PlantDoodle from "./doodles/PlantDoodle";
 import ReadingDoodle from "./doodles/ReadingDoodle";
 import ReadingSideDoodle from "./doodles/ReadingSideDoodle";
 import RollerSkatingDoodle from "./doodles/RollerSkatingDoodle";
 import RollingDoodle from "./doodles/RollingDoodle";
 import RunningDoodle from "./doodles/RunningDoodle";
 import SelfieDoodle from "./doodles/SelfieDoodle";
+import SitReadingDoodle from "./doodles/SitReadingDoodle";
 import SittingDoodle from "./doodles/SittingDoodle";
+import SleekDoodle from "./doodles/SleekDoodle";
 import SprintingDoodle from "./doodles/SprintingDoodle";
 import StrollingDoodle from "./doodles/StrollingDoodle";
 import SwingingDoodle from "./doodles/SwingingDoodle";
@@ -206,7 +211,7 @@ async function generatePack(args: {
 
 const App: React.FC = () => {
   const [state, setState] = useState<State>({
-    optionIndex: 1,
+    optionIndex: 0,
     tabIndex: 0,
     customConfig: {
       accentColor: "",
@@ -250,32 +255,37 @@ const App: React.FC = () => {
   const { backgroundColor } = config;
   const doodles: Array<ComponentClass<DoodleProps>> = [
     CoffeeDoddle,
+    SitReadingDoodle,
     DogJumpDoodle,
     DoogieDoodle,
     BalletDoodle,
     ReadingSideDoodle,
     LayingDoodle,
     GroovyDoodle,
-    BikiniDoodle,
-    SprintingDoodle,
-    MoshingDoodle,
-    MeditatingDoodle,
-    GroovySittingDoodle,
-    SwingingDoodle,
-    ZombieingDoodle,
-    UnboxingDoodle,
-    DancingDoodle,
-    StrollingDoodle,
-    RollingDoodle,
-    RollerSkatingDoodle,
-    JumpingDoodle,
-    SittingDoodle,
-    SelfieDoodle,
-    IceCreamDoodle,
-    ReadingDoodle,
-    RunningDoodle,
+    SleekDoodle,
+    FloatDoodle,
+    MessyDoodle,
+    PlantDoodle,
+    PettingDoodle,
     LovingDoodle,
-    PettingDoodle
+    RunningDoodle,
+    ReadingDoodle,
+    IceCreamDoodle,
+    SelfieDoodle,
+    SittingDoodle,
+    JumpingDoodle,
+    RollerSkatingDoodle,
+    RollingDoodle,
+    StrollingDoodle,
+    DancingDoodle,
+    UnboxingDoodle,
+    ZombieingDoodle,
+    SwingingDoodle,
+    GroovySittingDoodle,
+    MeditatingDoodle,
+    MoshingDoodle,
+    SprintingDoodle,
+    BikiniDoodle
   ];
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const svgRefs = useRef<Array<RefObject<SVGSVGElement>>>(
