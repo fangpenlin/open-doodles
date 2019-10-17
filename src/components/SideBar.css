@@ -262,6 +262,10 @@ a:hover {
   flex-direction: column;
 }
 
+.SideBar-author-block a {
+  padding-bottom: 8px;
+}
+
 @media (max-width: 767px) {
   .SideBar-author-block {
     display: none;
