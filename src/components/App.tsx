@@ -73,6 +73,11 @@ const options: Array<ColorConfig> = [
     inkColor: "#de384c",
     accentColor: "#9fc3d4",
     backgroundColor: "#e7ab8e"
+  },
+  {
+    inkColor: "#de6092",
+    accentColor: "#d8d27f",
+    backgroundColor: "#fff6e7"
   }
 ];
 
