@@ -14,7 +14,7 @@
         "eslint-utils": "^1.4.2",
         "fang-pen-react-scripts": "3.1.2",
         "file-saver": "^2.0.2",
-        "jszip": "^3.2.2",
+        "jszip": "^3.7.0",
         "loadash": "^1.0.0",
         "lodash": "^4.17.15",
         "react": "^16.9.0",
